@@ -6,8 +6,6 @@
 }
 
 .sectionMainBody{
-    background-color: rgb(255, 255, 255, 0.5);
-
     width: 60dvw;
     height: 150dvh;
 }
@@ -21,4 +19,10 @@
 
     width: 17dvw;
     height: 85dvh;
+}
+
+.boxSearchBar{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
 }
