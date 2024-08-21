@@ -1,24 +1,26 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import {Sacramento} from 'next/font/google';
 import Navbar from "@/app/components/navbar/Navbar"
 import Footer from "@/app/components/footer/Footer"
 
-const inter = Inter({ subsets: ['latin'] })
+const sacramento = Sacramento({
+  subsets: ['latin'], 
+  weight: '400', // Sacramento só tem peso 400
+});
 
 export const metadata = {
-  title: 'Blogzinho',
+  title: 'Doce Amargo',
   description: 'Blogizinho teste',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
+      <body>
         <div className="container">
           <div className='wrapper'>
             <Navbar/>
             {children}
-            <Footer/>
           </div>
         </div>
       </body>

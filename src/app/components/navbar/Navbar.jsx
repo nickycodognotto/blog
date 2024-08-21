@@ -6,17 +6,14 @@ import Link from 'next/link'
 const Navbar = () => {
     return(
         <div className={styles.container}>
-            <div className={styles.social}>
-                <Image src="/facebook.png" alt="facebook" width={24} height={24}/>
-                <Image src="/instagram.png" alt="instagram" width={24} height={24}/>
-                <Image src="/tiktok.png" alt="tiktok" width={24} height={24}/>
-                <Image src="/youtube.png" alt="yotube" width={24} height={24}/>
+            <div className={styles.name}>
+                <h1 className={styles.tituloSacramento}>doce amargo</h1>
             </div>
-            <div className={styles.logo}>BLOG DO NICOLAS</div>
             <div className={styles.links}>
-                <Link href="/">Homepage</Link>
-                <Link href="/">Contact</Link>
-                <Link href="/">About</Link>
+                <Link href="/">Home</Link>
+                <Link href="/">Sobre mim</Link>
+                <Link href="/">Postagens</Link>
+                <Link href="/">Entrar</Link>
             </div>
         </div>
     )

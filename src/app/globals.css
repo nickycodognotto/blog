@@ -24,16 +24,16 @@ a{
 
 .container{
     min-height: 100vh;
-    background-color: var(--bg);
+    background-color: #ffe9e7;
     color: var(--textColor);
 }
 
 .wrapper{
-    max-width: 1536px;
+    max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
 
@@ -44,9 +44,7 @@ a{
 
 
 
-
-
-@media screen and (max-width:1526px) {
+@media screen and (max-width:1536px) {
 
     .wrapper{
         max-width: 1366px;
@@ -64,8 +62,8 @@ a{
 
     .wrapper{
         max-width: 768px;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
 
