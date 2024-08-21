@@ -4,7 +4,6 @@ import styles from './searchBar.module.css'; // Se você tiver um arquivo CSS pa
 const SearchBar = () => {
   return (
     <div className={styles.InputContainer}>
-        
       <input
         placeholder="Pesquisar"
         id="input"

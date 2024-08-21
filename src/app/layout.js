@@ -11,11 +11,14 @@ const sacramento = Sacramento({
 export const metadata = {
   title: 'Doce Amargo',
   description: 'Blogizinho teste',
+  icons: {
+    icon: ['/favicon.ico']
+  }
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br"> 
       <body>
         <div className="container">
           <div className='wrapper'>

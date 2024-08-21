@@ -6,16 +6,18 @@ import SearchBar from './SearchBar/SearchBar'
 const HomeBody = () => {
     return(
         <div className={styles.container}>
-
+            
             <section className={styles.sectionMainBody}>
                 
             </section>
 
             <section className={styles.sectionSideBar}>
                 <CardProfile/>
-                <SearchBar />
+                <div className={styles.boxSearchBar}>
+                    <SearchBar />
+                    
+                </div>
             </section>
-            
         </div>
     )
 }
