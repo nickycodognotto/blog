@@ -8,8 +8,7 @@ export default function CardPost() {
         <img src="" alt="" />
       </div>
       <div className={styles.category}>TEMA DO POST </div>
-      <div className={styles.heading}>
-        Título do Post
+      <div className={styles.heading}>Título do Post
         <div className={styles.author}>
           By <span className={styles.name}>Docinho</span>
         </div>
