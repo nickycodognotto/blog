@@ -1,17 +1,21 @@
 import React from 'react'
 import styles from './homeBody.module.css'
 import CardProfile from './cardProfile/CardProfile'
+import SearchBar from './SearchBar/SearchBar'
 
 const HomeBody = () => {
     return(
         <div className={styles.container}>
-            <div className={styles.containerMainBody}>
 
-            </div>
-            
-            <div className={styles.containerSideBar}>
+            <section className={styles.sectionMainBody}>
+                
+            </section>
+
+            <section className={styles.sectionSideBar}>
                 <CardProfile/>
-            </div>
+                <SearchBar />
+            </section>
+            
         </div>
     )
 }

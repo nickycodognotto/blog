@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-direction: row;
+
+    gap: 2em;
+}
+
+.sectionMainBody{
+    background-color: red;
+
+    width: 60dvw;
+    height: 150dvh;
+}
+
+.sectionSideBar{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    background-color: blue;
+
+    width: 17dvw;
+    height: 85dvh;
+}
