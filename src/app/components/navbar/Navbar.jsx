@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import AuthLinks from '../authlinks/AuthLinks'
 
 const Navbar = () => {
     return(
@@ -13,7 +14,7 @@ const Navbar = () => {
                 <Link href="/">home</Link>
                 <Link href="/">sobre mim</Link>
                 <Link href="/">postagens</Link>
-                <Link href="/">entrar</Link>
+                <AuthLinks />
             </div>
         </div>
     )
