@@ -4,6 +4,7 @@ import CardProfile from './cardProfile/CardProfile'
 import SearchBar from './SearchBar/SearchBar'
 import FilterButton from './filterButton/FilterButton'
 import CardPost from './cardPost/CardPost'
+import Newsletter from './newsletter/Newsletter'
 
 const HomeBody = () => {
     return(
@@ -19,6 +20,7 @@ const HomeBody = () => {
                     <SearchBar />
                     <FilterButton />
                 </div>
+                <Newsletter />
             </section>
         </div>
     )
