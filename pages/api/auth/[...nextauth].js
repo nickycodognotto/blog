@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '../../../src/utils/conect'; 
+import prisma from '../../../src/utils/conect';
 
 export default NextAuth({
   providers: [
@@ -11,6 +11,7 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // Buscar o usuário na base de dados
         const user = await prisma.users.findUnique({
           where: { email: credentials.email },
         });
@@ -43,4 +44,5 @@ export default NextAuth({
     },
   },
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET, // Adicionando o segredo
 });
