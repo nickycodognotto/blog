@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '../../../src/utils/conect'; // Ajuste o caminho conforme necessário
+import prisma from '../../../src/utils/conect'; 
 
 export default NextAuth({
   providers: [
@@ -28,7 +28,7 @@ export default NextAuth({
     signIn: '/login', // Ajuste a página de login conforme necessário
   },
   session: {
-    strategy: 'jwt', // Use sessões baseadas em banco de dados
+    strategy: 'jwt',
   },
   callbacks: {
     async session({ session, user }) {

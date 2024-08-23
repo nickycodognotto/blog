@@ -2,15 +2,18 @@
 import React, { useState } from 'react';
 import styles from './loginForm.module.css';
 import { signIn } from 'next-auth/react';
+import LoadingMaquina from '../loadingMaquina/loadingMaquina';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const [loading, setLoading] = useState(false); // Adicione o estado de loading
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Ative o estado de loading
 
     if (isRegistering) {
       // Enviar uma solicitação para o endpoint de registro
@@ -45,14 +48,23 @@ const LoginForm = () => {
       });
 
       if (result.ok) {
-        console.log('Login bem-sucedido:', result);
         window.location.href = '/'; // Redireciona para a página inicial
+        setTimeout(() => {
+          setLoading(false); // Desative o estado de loading após um pequeno atraso
+          window.location.href = '/';
+        }, 2500); // Ajuste o tempo de loading conforme necessário
       } else {
         console.error('Erro de autenticação:', result.error);
         alert('Erro de autenticação: ' + result.error);
       }
     }
   };
+
+  if (loading) {
+    return (
+        <LoadingMaquina />
+    );
+  }
 
   return (
     <div className={styles.wrapperLogin}>
