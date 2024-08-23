@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from './loginForm.module.css';
 import { signIn } from 'next-auth/react';
-import LoadingMaquina from '../loadingMaquina/loadingMaquina';
+import LoadingMaquina from '../loadingMaquina/LoadingMaquina';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
