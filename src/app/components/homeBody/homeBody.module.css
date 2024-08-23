@@ -13,7 +13,7 @@
 .sectionSideBar{
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 3em;
 
     /* background-color: blue; */
 

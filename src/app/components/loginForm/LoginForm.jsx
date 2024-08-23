@@ -13,10 +13,16 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Ative o estado de loading
+
+    // Validação dos campos
+    if (!email || !password || (isRegistering && !name)) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    setLoading(true); // Ative o estado de loading apenas se todos os campos estiverem preenchidos
 
     if (isRegistering) {
-      // Enviar uma solicitação para o endpoint de registro
       try {
         const response = await fetch('/api/auth/register', {
           method: 'POST',
@@ -40,7 +46,6 @@ const LoginForm = () => {
         alert('Erro ao conectar-se com a API');
       }
     } else {
-      // Usar signIn para fazer login
       const result = await signIn('credentials', {
         redirect: false,
         email,
@@ -48,11 +53,10 @@ const LoginForm = () => {
       });
 
       if (result.ok) {
-        window.location.href = '/'; // Redireciona para a página inicial
         setTimeout(() => {
-          setLoading(false); // Desative o estado de loading após um pequeno atraso
+          setLoading(false);
           window.location.href = '/';
-        }, 2500); // Ajuste o tempo de loading conforme necessário
+        }, 2500);
       } else {
         console.error('Erro de autenticação:', result.error);
         alert('Erro de autenticação: ' + result.error);
@@ -61,9 +65,7 @@ const LoginForm = () => {
   };
 
   if (loading) {
-    return (
-        <LoadingMaquina />
-    );
+    return <LoadingMaquina />;
   }
 
   return (

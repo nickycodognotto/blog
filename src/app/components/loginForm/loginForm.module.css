@@ -1,196 +1,200 @@
 .wrapperLogin {
-    --input-focus: #2d8cf0;
-    --font-color: #323232;
-    --font-color-sub: #666;
-    --bg-color: #fff;
-    --bg-color-alt: #666;
-    --main-color: #323232;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-  }
-  
-  /* switch card */
-  .switch {
-    transform: translateY(-250px); /* Ajustado para se alinhar com o novo tamanho do card */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    width: 60px; /* Ajustado */
-    height: 30px; /* Ajustado */
-  }
-  
-  .cardSide::before {
-    position: absolute;
-    content: 'Entrar';
-    left: -90px; /* Ajustado */
-    top: 0;
-    width: 120px; /* Ajustado */
-    text-decoration: none;
-    color: var(--font-color);
-    font-weight: 600;
-  }
-  
-  .cardSide::after {
-    position: absolute;
-    content: 'Inscrever';
-    left: 90px; /* Ajustado */
-    top: 0;
-    width: 120px; /* Ajustado */
-    text-decoration: none;
-    color: var(--font-color);
-    font-weight: 600;
-  }
-  
-  .toggle {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--bg-color);
-    transition: 0.3s;
-  }
-  
-  .slider::before {
-    box-sizing: border-box;
-    position: absolute;
-    content: "";
-    height: 30px; /* Ajustado */
-    width: 30px; /* Ajustado */
-    border: 2px solid var(--main-color);
-    border-radius: 5px;
-    left: -2px;
-    bottom: 2px;
-    background-color: var(--bg-color);
-    box-shadow: 0 3px 0 var(--main-color);
-    transition: 0.3s;
-  }
-  
-  .toggle:checked + .slider {
-    background-color: var(--input-focus);
-  }
-  
-  .toggle:checked + .slider::before {
-    transform: translateX(40px); /* Ajustado */
-  }
-  
-  .toggle:checked ~ .cardSide::before {
-    text-decoration: none;
-  }
-  
-  .toggle:checked ~ .cardSide::after {
-    text-decoration: none;
-  }
-  
-  /* card */ 
-  
-  .flipCardInner {
-    width: 400px; /* Ajustado */
-    height: 500px; /* Ajustado */
-    position: relative;
-    background-color: transparent;
-    perspective: 1000px;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
-  
-  .toggle:checked ~ .flipCardInner {
-    transform: rotateY(180deg);
-  }
-  
-  .toggle:checked ~ .flipCardFront {
-    box-shadow: none;
-  }
-  
-  .flipCardFront, .flipCardBack {
-    padding: 30px; /* Ajustado */
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    background: lightgrey;
-    gap: 30px; /* Ajustado */
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-  }
-  
-  .flipCardBack {
-    width: 100%;
-    transform: rotateY(180deg);
-  }
-  
-  .flipCardForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px; /* Ajustado */
-  }
-  
-  .title {
-    margin: 30px 0; /* Ajustado */
-    font-size: 30px; /* Ajustado */
-    font-weight: 900;
-    text-align: center;
-    color: var(--main-color);
-  }
-  
-  .flipCardInput {
-    width: 300px; /* Ajustado */
-    height: 50px; /* Ajustado */
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
-    font-size: 18px; /* Ajustado */
-    font-weight: 600;
-    color: var(--font-color);
-    padding: 10px 15px; /* Ajustado */
-    outline: none;
-  }
-  
-  .flipCardInput::placeholder {
-    color: var(--font-color-sub);
-    opacity: 0.8;
-  }
-  
-  .flipCardInput:focus {
-    border: 2px solid var(--input-focus);
-  }
-  
-  .flipCardBtn:active, .buttonConfirm:active {
-    box-shadow: 0px 0px var(--main-color);
-    transform: translate(3px, 3px);
-  }
-  
-  .flipCardBtn {
-    margin: 30px 0; /* Ajustado */
-    width: 150px; /* Ajustado */
-    height: 50px; /* Ajustado */
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
-    font-size: 20px; /* Ajustado */
-    font-weight: 600;
-    color: var(--font-color);
-    cursor: pointer;
-  }
+  --input-focus: #836FFF; /* Roxo mais claro */
+  --font-color: #FFFFFF; /* Texto em branco */
+  --font-color-sub: #DCDCDC; /* Subtexto em branco mais claro */
+  --bg-color: #4B0082; /* Roxo mais forte */
+  --bg-color-alt: #9370DB; /* Roxo alternativo mais claro */
+  --main-color: #FFFFFF; /* Cor principal branca */
+}
+
+/* switch card */
+.switch {
+  transform: translateY(-250px); /* Ajustado para se alinhar com o novo tamanho do card */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 60px; /* Ajustado */
+  height: 30px; /* Ajustado */
+}
+
+.cardSide::before {
+  position: absolute;
+  content: 'Entrar';
+  left: -90px; /* Ajustado */
+  top: 0;
+  width: 120px; /* Ajustado */
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.cardSide::after {
+  position: absolute;
+  content: 'Inscrever';
+  left: 90px; /* Ajustado */
+  top: 0;
+  width: 120px; /* Ajustado */
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-shadow: 4px 4px black;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.slider::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  height: 30px; /* Ajustado */
+  width: 30px; /* Ajustado */
+  border: 2px solid black;
+  border-radius: 5px;
+  left: -2px;
+  bottom: 2px;
+  background-color: white;
+  box-shadow: 0 3px 0 black;
+  transition: 0.3s;
+}
+
+.toggle:checked + .slider {
+  background-color: #9370DB;
+}
+
+.toggle:checked + .slider::before {
+  transform: translateX(40px); /* Ajustado */
+}
+
+.toggle:checked ~ .cardSide::before {
+  text-decoration: none;
+}
+
+.toggle:checked ~ .cardSide::after {
+  text-decoration: none;
+}
+
+/* card */
+
+.flipCardInner {
+  width: 400px; /* Ajustado */
+  height: 500px; /* Ajustado */
+  position: relative;
+  background-color: transparent;
+  perspective: 1000px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Removendo o clique no card */
+.flipCardFront, .flipCardBack {
+  padding: 30px; /* Ajustado */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: var(--bg-color-alt); /* Fundo roxo alternativo */
+  gap: 30px; /* Ajustado */
+  border-radius: 5px;
+  border: 2px solid #4B0082;
+  box-shadow: 4px 4px #4B0082;
+}
+
+.flipCardBack {
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.flipCardForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Ajustado */
+}
+
+.title {
+  margin: 30px 0; /* Ajustado */
+  font-size: 30px; /* Ajustado */
+  font-weight: 900;
+  text-align: center;
+  color: var(--main-color);
+}
+
+.flipCardInput {
+  width: 300px; /* Ajustado */
+  height: 50px; /* Ajustado */
+  border-radius: 5px;
+  border: 2px solid #4B0082;
+  background-color: white;
+  box-shadow: 4px 4px #4B0082;
+  font-size: 18px; /* Ajustado */
+  font-weight: 600;
+  color: black;
+  padding: 10px 15px; /* Ajustado */
+  outline: none;
+}
+
+.flipCardInput::placeholder {
+  color: black;
+  opacity: 0.3;
+}
+
+.flipCardInput:focus {
+  border: 2px solid var(--input-focus);
+}
+
+.flipCardBtn:active, .buttonConfirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+.flipCardBtn {
+  margin: 30px 0; /* Ajustado */
+  width: 150px; /* Ajustado */
+  height: 50px; /* Ajustado */
+  border-radius: 5px;
+  border: 2px solid #4B0082;
+  background-color: var(--input-focus); /* Fundo do botão roxo claro */
+  box-shadow: 4px 4px #4B0082;
+  font-size: 20px; /* Ajustado */
+  font-weight: 600;
+  color: var(--main-color); /* Texto em branco */
+  cursor: pointer;
+}
+
+/* Aplicando o flip apenas quando o toggle estiver ativado */
+.toggle:checked ~ .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+/* Desabilitar clique no card */
+.flipCardInner {
+  pointer-events: none;
+}
+
+.flipCardBtn, .flipCardInput{
+  pointer-events: auto;
+}
