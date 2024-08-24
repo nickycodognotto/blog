@@ -10,12 +10,14 @@ datasource db {
 model posts {
   id         Int       @id @default(autoincrement())
   title      String    @db.VarChar(255)
+  theme      String    @db.VarChar(255)
   content    String
-  author_id  Int?
+  author_id  String?
   created_at DateTime? @default(now()) @db.Timestamp(6)
   updated_at DateTime? @default(now()) @db.Timestamp(6)
   slug       String    @unique @db.VarChar(255)
   image      String?   @db.VarChar(255)
+  users      users?    @relation(fields: [author_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model users {
@@ -27,6 +29,7 @@ model users {
   created_at DateTime? @default(now()) @db.Timestamp(6)
   updated_at DateTime? @default(now()) @db.Timestamp(6)
   sessions   Session[]
+  posts      posts[]
 }
 
 model Session {
@@ -34,5 +37,5 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         users   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

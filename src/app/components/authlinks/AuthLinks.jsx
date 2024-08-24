@@ -1,24 +1,28 @@
-"use client";
+"use client"
 import Link from "next/link";
 import styles from "./authLinks.module.css";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from 'next/navigation'; // Importa o useRouter
+import { useRouter } from 'next/navigation';
 import LoadingMaquina from "../loadingMaquina/LoadingMaquina";
 
 const AuthLinks = () => {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false); // Estado para controle do carregamento
+  const [loading, setLoading] = useState(false);
   const { status } = useSession();
-  const router = useRouter(); // Hook para redirecionamento
+  const router = useRouter();
 
   const handleLoginRedirect = () => {
-    setLoading(true); // Ativa o carregamento
+    setLoading(true);
 
     setTimeout(() => {
-      setLoading(false); // Desativa o carregamento após o tempo
-      router.push("/login"); // Redireciona para a página de login
-    }, 2500); // Tempo de carregamento simulado (3 segundos)
+      setLoading(false);
+      router.push("/login");
+    }, 2500);
+  };
+
+  const handlePostRedirect = () => {
+    router.push("/postar");
   };
 
   return (
@@ -29,9 +33,9 @@ const AuthLinks = () => {
         </span>
       ) : (
         <>
-          <Link href="/write" className={styles.link}>
+          <span className={styles.link} onClick={handlePostRedirect}>
             publicar
-          </Link>
+          </span>
           <span className={styles.link} onClick={() => signOut()}>
             logout
           </span>
@@ -51,15 +55,13 @@ const AuthLinks = () => {
             <span onClick={handleLoginRedirect}>login</span>
           ) : (
             <>
-              <Link href="/write">write</Link>
-              <span className={styles.link} onClick={() => signOut()}>Logout</span>
+              <span onClick={handlePostRedirect}>publicar</span>
+              <span className={styles.link} onClick={() => signOut()}>logout</span>
             </>
           )}
         </div>
       )}
-      {loading && (
-          <LoadingMaquina />
-      )}
+      {loading && <LoadingMaquina />}
     </>
   );
 };

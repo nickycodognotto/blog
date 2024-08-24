@@ -13,8 +13,8 @@
 
 
 .typewriter {
-  --blue: #5cbbff;
-  --blue-dark: #162d72;
+  --blue: #800080; /* Roxo */
+  --blue-dark: #4b0082; /* Indigo */
   --key: #fff;
   --paper: #eef0fd;
   --text: #00000049;

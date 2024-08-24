@@ -1,0 +1,31 @@
+/* post.module.css */
+
+.container {
+    padding: 20px;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .textareaField {
+    min-height: 150px;
+  }
+  
+  .botaopublish {
+    padding: 10px 20px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .botaopublish:hover {
+    background-color: #3700b3;
+  }
+  
