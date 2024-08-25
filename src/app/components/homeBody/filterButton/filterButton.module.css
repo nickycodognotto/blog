@@ -9,18 +9,20 @@
     cursor: pointer;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.021);
     transition: all 0.3s;
+
+    background-color: white;
   }
   
   .filter svg {
     height: 16px;
-    fill: rgb(77, 77, 77);
+    fill: rgb(0, 0, 0);
     transition: all 0.3s;
   }
   .filter:hover {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.11);
-    background-color: rgb(59, 59, 59);
+    background-color: rgb(255, 255, 255);
   }
   .filter:hover svg {
-    fill: white;
+    fill: rgb(0, 0, 0);
   }
   

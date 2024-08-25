@@ -48,11 +48,8 @@ const AuthLinks = () => {
       </div>
       {open && (
         <div className={styles.responsiveMenu}>
-          <Link href="/">home</Link>
-          <Link href="/">sobre mim</Link>
-          <Link href="/">postagens</Link>
           {status === "unauthenticated" ? (
-            <span onClick={handleLoginRedirect}>login</span>
+            <span className={styles.loginButton} onClick={handleLoginRedirect}>login</span>
           ) : (
             <>
               <span onClick={handlePostRedirect}>publicar</span>

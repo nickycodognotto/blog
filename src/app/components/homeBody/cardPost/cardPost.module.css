@@ -2,6 +2,7 @@
 
 
 .card {
+  position: relative;
     width: 1000px;
     height: 600px;
     background: white;
@@ -9,14 +10,20 @@
     border-radius: 6px;
   }
   
-  .card-image {
+  .cardImage {
     background-color: rgb(236, 236, 236);
     width: 100%;
-    height: 400px;
+    height: 430px;
     border-radius: 6px 6px 0 0;
+    overflow: hidden; /* Garante que a imagem não ultrapasse o container */
+    transform: scale(1);
+
+    object-fit: fill;
+
+    transition: transform 0.3s ease-in-out; /* Adiciona a transição suave para o efeito de hover */
   }
   
-  .card-image:hover {
+  .cardImage:hover {
     transform: scale(0.98);
   }
   
@@ -28,7 +35,7 @@
     font-weight: 600;
 
 
-    color: rgb(63, 121, 230);
+    color: #f55d56;
     padding: 10px 7px 0;
   }
   
@@ -56,7 +63,7 @@
     font-size: 15px;
     padding-top: 20px;
 
-    margin-top: 3em;
+    margin-top: 1em;
   }
   
   .name {
