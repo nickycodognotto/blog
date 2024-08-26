@@ -82,53 +82,53 @@ const LoginForm = () => {
           <span className={styles.cardSide}></span>
           <div className={styles.flipCardInner}>
             <div className={styles.flipCardFront}>
-              <div className={styles.title}>Entrar</div>
+              <div className={styles.title}>entrar</div>
               <form className={styles.flipCardForm} onSubmit={handleSubmit}>
                 <input
                   className={styles.flipCardInput}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
+                  placeholder="email"
                   type="email"
                 />
                 <input
                   className={styles.flipCardInput}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Senha"
+                  placeholder="senha"
                   type="password"
                 />
                 <button type="submit" className={styles.flipCardBtn}>
-                  {isRegistering ? 'Inscrever!' : 'Vamos lá!'}
+                  {isRegistering ? 'inscrever!' : 'bem-vinde'}
                 </button>
               </form>
             </div>
             <div className={styles.flipCardBack}>
-              <div className={styles.title}>Inscrever</div>
+              <div className={styles.title}>inscrever</div>
               {isRegistering && (
                 <form className={styles.flipCardForm} onSubmit={handleSubmit}>
                   <input
                     className={styles.flipCardInput}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Nome"
+                    placeholder="nome"
                     type="text"
                   />
                   <input
                     className={styles.flipCardInput}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
+                    placeholder="email"
                     type="email"
                   />
                   <input
                     className={styles.flipCardInput}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Senha"
+                    placeholder="senha"
                     type="password"
                   />
-                  <button type="submit" className={styles.flipCardBtn}>Inscrever!</button>
+                  <button type="submit" className={styles.flipCardBtn}>inscrever!</button>
                 </form>
               )}
             </div>

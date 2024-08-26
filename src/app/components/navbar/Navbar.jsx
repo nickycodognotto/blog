@@ -5,15 +5,17 @@ import Link from 'next/link'
 import AuthLinks from '../authlinks/AuthLinks'
 
 const Navbar = () => {
-    return(
+    return (
         <div className={styles.container}>
+            <div className={styles.leftLinks}>
+                <Link href="/">home</Link>
+                <Link href="/">sobre mim</Link>
+            </div>
             <div className={styles.name}>
                 <h1 className={styles.tituloSacramento}>doce amargo</h1>
             </div>
-            <div className={styles.links}>
-                <Link href="/">home</Link>
-                <Link href="/">sobre mim</Link>
-                <Link href="/">postagens</Link>
+            <div className={styles.rightLinks}>
+                <Link href="/postagens">postagens</Link>
                 <AuthLinks />
             </div>
         </div>

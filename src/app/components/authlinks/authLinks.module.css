@@ -40,6 +40,63 @@
   
 
 
+  .dropdown {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    z-index: 15;
+  }
+  
+  .dropdown:hover, .dropdownOpen {
+    transform: scale(1.1);
+  }
+  
+  .dropdownContent {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-self: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    margin-top: 5px;
+
+    font-size: 15px;
+  }
+  
+  .dropdownContent span {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdownContent span:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
+  /* Estilo do dropdown no menu responsivo */
+  .dropdownResponsive {
+    cursor: pointer;
+  }
+  
+  .dropdownContentResponsive {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+  }
+  
+  .dropdownContentResponsive span {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .dropdownContentResponsive span:hover {
+    background-color: #f1f1f1;
+  }
 
 
   @media screen and (max-width: 640px) {

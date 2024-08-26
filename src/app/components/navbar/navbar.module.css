@@ -1,76 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
 
-.tituloSacramento {
-    font-family: 'Sacramento', cursive;;
-}
-
-.container{
+.container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around; /* Espaça os elementos igualmente */
     height: 100px;
-    /* background-color: white; */
-
     margin-bottom: 10px;
+    position: relative;
+}
+
+.leftLinks, .rightLinks {
+    display: flex;
+    gap: 50px;
+
+    font-size: 30px;
+    font-family: "Cormorant", serif;
+    font-weight: 450;
 }
 
 .name {
-    flex: 1;
-    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 30px;
-    font-weight: bold;
-    margin-left: 5em;
     font-style: italic;
 }
 
-.links {
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    font-family: "Cormorant", serif;
-    font-weight: 600;
-    color: rgb(48, 48, 48);
-    text-decoration: none;
+.tituloSacramento {
+    font-family: 'Sacramento', cursive;
+    font-weight: bold;
 }
 
-.links a:hover {
-    /* color: #ffffff;  */
+
+.leftLinks a, .rightLinks a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.rightLinks a:hover, .leftLinks a:hover {
     transform: scale(1.15);
     transition: transform 0.2s ease-in-out;
 }
-  
 
 @media screen and (max-width: 1280px) {
-.logo {
-    font-size: 32px;
-}
-.links {
-    font-size: 18px;
-    gap: 15px;
-}
+    .links {
+        font-size: 18px;
+        gap: 15px;
+    }
 }
 
 @media screen and (max-width: 1024px) {
-.social {
-    display: none;
-}
-.logo {
-    text-align: left;
-}
+    .social {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 768px) {
-.logo {
-    font-size: 24px;
-}
+    .logo {
+        font-size: 24px;
+    }
 }
 
 @media screen and (max-width: 640px) {
-.links{
-    justify-content: flex-end;
-}
-.link {
-    display: none;
-}
+    .links {
+        font-size: 16px; /* Ajuste do tamanho da fonte para telas menores */
+    }
 }

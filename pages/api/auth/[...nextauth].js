@@ -18,7 +18,12 @@ export default NextAuth({
 
         // Simulação simples de verificação de senha
         if (user && user.password === credentials.password) {
-          return { id: user.id, email: user.email, name: user.name };
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            role: user.role, // Certifique-se de que o role seja retornado
+          };
         } else {
           return null;
         }
@@ -32,15 +37,25 @@ export default NextAuth({
     strategy: 'jwt',
   },
   callbacks: {
-    async session({ session, user }) {
-      if (user) {
+    async session({ session, token }) {
+      if (token) {
         session.user = {
-          id: user.id,
-          email: user.email,
-          name: user.name,
+          id: token.id,
+          email: token.email,
+          name: token.name,
+          role: token.role, // Adiciona o role à sessão
         };
       }
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.role = user.role; // Adiciona o role ao token JWT
+      }
+      return token;
     },
   },
   adapter: PrismaAdapter(prisma),
