@@ -7,17 +7,12 @@
     /* justify-content: center;
     align-items: center; */
 
-    background-color: rgb(255, 255, 255, 0.7);
-
     border-radius: 20px 20px 10px 10px;
-    margin-bottom: 10em;
 }
 
 .imagemPost{
     width: 100%;
     height: 500px;
-
-    margin-bottom: 1em;
 }
 
 .boxTitulo{
@@ -68,4 +63,24 @@
     text-indent: 50px;
 
     margin-bottom: 1em;
+
+    white-space: pre-wrap;
+}
+
+.boxConteudo{
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+
+    background-color: rgb(255, 255, 255, 1);
+    border-radius: 0px 0px 10px 10px;
+    height: 870px;
+
+    margin-top: -5px;
+    z-index: 10;
+}
+
+.divisor{
+    width: 100px;
+    height: 100px;
 }

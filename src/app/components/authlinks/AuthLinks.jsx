@@ -61,11 +61,6 @@ const AuthLinks = () => {
         </span>
       ) : (
         <>
-          {userRole === "admin" && (
-            <span className={styles.link} onClick={handlePostRedirect}>
-              publicar
-            </span>
-          )}
           <div 
             className={`${styles.dropdown} ${dropdownOpen ? styles.dropdownOpen : ""}`} 
             onClick={handleMyAccountToggle} 
@@ -74,7 +69,10 @@ const AuthLinks = () => {
             minha conta
             {dropdownOpen && (
               <div className={styles.dropdownContent}>
-                <span onClick={handlePasswordChange}>alterar minha senha</span>
+                {userRole === "admin" && (
+                  <span onClick={handlePostRedirect}>publicar</span>
+                )}
+                <span onClick={handlePasswordChange}>alterar senha</span>
                 <span onClick={() => signOut({ callbackUrl: '/' })}>logout</span>
               </div>
             )}
@@ -91,24 +89,22 @@ const AuthLinks = () => {
           {status === "unauthenticated" ? (
             <span className={styles.loginButton} onClick={handleLoginRedirect}>login</span>
           ) : (
-            <>
-              {userRole === "admin" && (
-                <span onClick={handlePostRedirect}>publicar</span>
+            <div 
+              className={`${styles.dropdownResponsive} ${dropdownOpen ? styles.dropdownOpen : ""}`}
+              onClick={handleMyAccountToggle}
+              ref={dropdownRef}
+            >
+              minha conta
+              {dropdownOpen && (
+                <div className={styles.dropdownContentResponsive}>
+                  {userRole === "admin" && (
+                    <span onClick={handlePostRedirect}>publicar</span>
+                  )}
+                  <span onClick={handlePasswordChange}>alterar minha senha</span>
+                  <span onClick={() => signOut({ callbackUrl: '/' })}>logout</span>
+                </div>
               )}
-              <div 
-                className={`${styles.dropdownResponsive} ${dropdownOpen ? styles.dropdownOpen : ""}`}
-                onClick={handleMyAccountToggle}
-                ref={dropdownRef}
-              >
-                minha conta
-                {dropdownOpen && (
-                  <div className={styles.dropdownContentResponsive}>
-                    <span onClick={handlePasswordChange}>alterar minha senha</span>
-                    <span onClick={() => signOut({ callbackUrl: '/' })}>logout</span>
-                  </div>
-                )}
-              </div>
-            </>
+            </div>
           )}
         </div>
       )}

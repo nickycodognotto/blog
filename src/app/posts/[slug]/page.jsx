@@ -29,10 +29,11 @@ export default async function PostPage({ params }) {
           <img className={styles.imagemPost} src={post.image} alt={post.title} />
         </div>
       )}
-      <div>
+      <div className={styles.boxConteudo}>
         <h2 className={styles.conteudoLabel}>Conteúdo:</h2>
         <p className={styles.conteudo}>{post.content}</p>
       </div>
+      <div className={styles.divisor}></div> 
     </div>
   );
 }

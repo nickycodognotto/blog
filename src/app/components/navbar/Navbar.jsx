@@ -13,7 +13,7 @@ const Navbar = () => {
                 <Link href="/postagens">postagens</Link>
             </div>
             <div className={styles.name}>
-                <h1 className={styles.tituloSacramento}>doce amargo</h1>
+                <Link href="/"><h1 className={styles.tituloSacramento}>doce amargo</h1></Link>
             </div>
             <div className={styles.rightLinks}>
                 <Link href="/">portifólio</Link>

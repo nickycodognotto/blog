@@ -53,10 +53,8 @@ const LoginForm = () => {
       });
 
       if (result.ok) {
-        setTimeout(() => {
-          setLoading(false);
-          window.location.href = '/';
-        }, 2500);
+        setLoading(false);
+        window.location.href = '/';
       } else {
         console.error('Erro de autenticação:', result.error);
         alert('Erro de autenticação: ' + result.error);

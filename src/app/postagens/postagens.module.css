@@ -1,113 +1,141 @@
 .container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .title {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .postsList {
-    list-style: none;
-    background-color: white;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
-    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.postsList {
+  list-style: none;
+  padding-left: 0; /* Remove o preenchimento padrão da lista */
+  padding-top: 0; /* Remove o preenchimento padrão da lista */
+
+  margin-top: 20px;
+}
+
+.postItem {
+  background-color: white; /* Adiciona o fundo branco */
+  border-radius: 10px; /* Borda arredondada */
+  padding: 10px; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+  margin-bottom: 20px; /* Espaçamento entre os itens */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+  display: flex;
+  align-items: center;
+  position: relative; /* Adiciona a posição relativa para o botão */
+  height: 100px; /* Altura fixa para todos os itens */
+}
+
+.postItem:hover {
+  transform: scale(1.02); /* Aumenta o tamanho do item ao passar o mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+}
+
+.postLink {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageContainer {
+  margin-right: 20px;
+}
+
+.image {
+  width: 150px;
+  height: 90px; /* Ajusta a altura da imagem para preencher o contêiner */
+  object-fit: cover;
+  border-radius: 10px;
+  padding-top: 3px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Alinha o conteúdo no espaço disponível */
+}
+
+.postTitle {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.postTheme {
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.postExcerpt {
+  font-size: 0.9em;
+  color: #555;
+  width: 80%;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 3px; /* Reduz ainda mais a distância entre o texto e o ícone */
+  padding: 4px 8px; /* Reduz o preenchimento interno */
+  border-radius: 6px; /* Menos arredondado */
+  border: none;
+  overflow: hidden;
+  background: rgb(164, 46, 194);
+  color: #fff;
+  position: absolute;
+  bottom: 10px; /* Ajusta a posição do botão para baixo */
+  right: 10px; /* Ajusta a posição do botão para a direita */
+  cursor: pointer; /* Adiciona a mudança de cursor */
+}
+
+.buttonText {
+  transform: translateX(8px); /* Ajusta a distância inicial */
+  font-size: 1em; /* Reduz o tamanho da fonte */
+  font-weight: 600; /* Mantém o peso da fonte */
+  transition-duration: 0.3s;
+}
+
+.iconer {
+  transform: translateY(30px); /* Ajusta a posição inicial do ícone */
+  transition-duration: 0.3s;
+}
+
+.button:hover .buttonText {
+  transform: translateX(0px);
+}
+
+.button:hover .iconer {
+  transform: translateY(2.5px);
+}
+
+.boxSearchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  gap: 10px;
+
+  width: 45%;
+}
+
+
+
+@media screen and (max-width: 640px) {
+  .burger {
+    display: flex;
   }
 
-  .postsList:hover {
-    transform: scale(1.02); /* Aumenta o tamanho do item ao passar o mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
+  .link {
+    display: none;
   }
-  
-  .postItem {
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
-    position: relative; /* Adicione esta linha */
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-
-    margin-bottom: 10px;
-  }
-
-  
-  .postLink {
-    display: flex;
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .imageContainer {
-    margin-right: 20px;
-  }
-  
-  .image {
-    width: 150px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .content {
-    flex: 1;
-  }
-  
-  .postTitle {
-    font-size: 1.5em;
-    margin: 0;
-  }
-  
-  .postTheme {
-    font-size: 1em;
-    margin: 5px 0;
-  }
-  
-  .postExcerpt {
-    font-size: 0.9em;
-    color: #555;
-    width: 80%;
-  }
-  
-  .button {
-    display: flex;
-    align-items: center;
-    gap: 3px; /* Reduz ainda mais a distância entre o texto e o ícone */
-    padding: 4px 8px; /* Reduz o preenchimento interno */
-    border-radius: 6px; /* Menos arredondado */
-    border: none;
-    overflow: hidden;
-    background: rgb(164, 46, 194);
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 8px; /* Menos espaçamento em relação aos cantos */
-    cursor: pointer; /* Adiciona a mudança de cursor */
-  }
-  
-  .buttonText {
-    transform: translateX(8px); /* Ajusta a distância inicial */
-    font-size: 1em; /* Reduz o tamanho da fonte */
-    font-weight: 600; /* Mantém o peso da fonte */
-    transition-duration: 0.3s;
-  }
-  
-  .iconer {
-    transform: translateY(30px); /* Ajusta a posição inicial do ícone */
-    transition-duration: 0.3s;
-  }
-  
-  .button:hover .buttonText {
-    transform: translateX(0px);
-  }
-  
-  .button:hover .iconer {
-    transform: translateY(2.5px);
-  }
-  
+}

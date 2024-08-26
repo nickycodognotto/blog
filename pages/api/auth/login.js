@@ -1,7 +1,5 @@
 import prisma from '../../../src/utils/prismaClient';
 
-// Crie uma instância do PrismaClient
-const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
