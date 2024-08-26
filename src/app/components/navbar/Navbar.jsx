@@ -10,12 +10,14 @@ const Navbar = () => {
             <div className={styles.leftLinks}>
                 <Link href="/">home</Link>
                 <Link href="/">sobre mim</Link>
+                <Link href="/postagens">postagens</Link>
             </div>
             <div className={styles.name}>
                 <h1 className={styles.tituloSacramento}>doce amargo</h1>
             </div>
             <div className={styles.rightLinks}>
-                <Link href="/postagens">postagens</Link>
+                <Link href="/">portifólio</Link>
+                <Link href="/">contato</Link>
                 <AuthLinks />
             </div>
         </div>

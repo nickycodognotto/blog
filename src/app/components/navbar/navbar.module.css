@@ -8,15 +8,17 @@
     height: 100px;
     margin-bottom: 10px;
     position: relative;
+    
 }
 
 .leftLinks, .rightLinks {
     display: flex;
-    gap: 50px;
+    gap: 35px;
 
-    font-size: 30px;
+    font-size: 25px;
     font-family: "Cormorant", serif;
     font-weight: 450;
+    transition: transform 0.2s ease-in-out;
 }
 
 .name {
@@ -29,13 +31,14 @@
 
 .tituloSacramento {
     font-family: 'Sacramento', cursive;
-    font-weight: bold;
+    font-weight: 1;
 }
 
 
 .leftLinks a, .rightLinks a {
     text-decoration: none;
     color: inherit;
+    transition: transform 0.5s ease-in-out;
 }
 
 .rightLinks a:hover, .leftLinks a:hover {
