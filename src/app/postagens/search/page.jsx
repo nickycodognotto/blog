@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import styles from '../postagens.module.css';
 import SearchBar from '@/app/components/homeBody/SearchBar/SearchBar';
 import FilterButton from '@/app/components/homeBody/filterButton/FilterButton';
@@ -49,7 +50,7 @@ const PostsSearchPage = () => {
           posts.map((post) => (
             <li key={post.id} className={styles.postItem}>
               <div className={styles.imageContainer}>
-                <img className={styles.image} src={post.image} alt={post.title} />
+                <Image className={styles.image} src={post.image} alt={post.title}></Image>
               </div>
               <div className={styles.content}>
                 <h2 className={styles.postTitle}>{post.title}</h2>

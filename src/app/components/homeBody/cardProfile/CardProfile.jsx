@@ -25,7 +25,7 @@ const CardProfile = () => {
       </button>
 
       <div className={styles.profilePic}>
-        <img src="/profilePic.jpg" alt="Profile Pic Mariana Manzano" />
+        <Image src="/profilePic.jpg" alt="Profile Pic Mariana Manzano"></Image>
 
       </div>
 
@@ -39,7 +39,7 @@ const CardProfile = () => {
         <div className={styles.bottomBottom}>
           <div className={styles.socialLinksContainer}>
             <Link href="https://www.skoob.com.br/">
-              <img src="/skoobLogo.png" alt="Skoob Logo" />
+              <Image src="/skoobLogo.png" alt="Skoob Logo"></Image>
             </Link>
           </div>
         </div>

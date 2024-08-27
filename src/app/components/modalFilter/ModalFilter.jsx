@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react'; // Importa useCallback para memoizar discardChanges
 import { useRouter, usePathname } from 'next/navigation'; // Importação correta para a estrutura app
 import styles from './modalFilter.module.css';
 
@@ -18,7 +18,7 @@ const ModalFilter = ({ isOpen, onClose }) => {
     const savedCategory = localStorage.getItem('selectedCategory');
     if (savedOption) setSelectedOption(savedOption);
     if (savedCategory) setSelectedCategory(savedCategory);
-  }, []);
+  }, []); // Este efeito não depende de nada, então o array de dependências está correto aqui
 
   useEffect(() => {
     if (isOpen) {
@@ -26,7 +26,7 @@ const ModalFilter = ({ isOpen, onClose }) => {
       setTempSelectedCategory(selectedCategory);
       setShowCategories(selectedOption === "categoriaDoPost");
     }
-  }, [isOpen, selectedOption]);
+  }, [isOpen, selectedOption, selectedCategory]); // Inclui `selectedCategory` como dependência
 
   useEffect(() => {
     // Limpa a modal e desmarcar todas as opções se a página não for '/postagens/search'
@@ -41,14 +41,13 @@ const ModalFilter = ({ isOpen, onClose }) => {
       localStorage.removeItem('selectedOption');
       localStorage.removeItem('selectedCategory');
     }
-  }, [pathname]);
+  }, [pathname]); // O array de dependências está correto aqui
 
-  const handleClickOutside = (e) => {
-    if (e.target === e.currentTarget) {
-      discardChanges();
-      onClose();
-    }
-  };
+  const discardChanges = useCallback(() => {
+    setTempSelectedOption(selectedOption);
+    setTempSelectedCategory(selectedCategory);
+    setShowCategories(selectedOption === "categoriaDoPost");
+  }, [selectedOption, selectedCategory]); // Inclui `selectedOption` e `selectedCategory` como dependências
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -60,12 +59,13 @@ const ModalFilter = ({ isOpen, onClose }) => {
 
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
-  }, [onClose]);
+  }, [discardChanges, onClose]); // Inclui `discardChanges` no array de dependências
 
-  const discardChanges = () => {
-    setTempSelectedOption(selectedOption);
-    setTempSelectedCategory(selectedCategory);
-    setShowCategories(selectedOption === "categoriaDoPost");
+  const handleClickOutside = (e) => {
+    if (e.target === e.currentTarget) {
+      discardChanges();
+      onClose();
+    }
   };
 
   const handleOptionChange = (e) => {

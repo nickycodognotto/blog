@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import prisma from '../../utils/prismaClient';
 import styles from './postagens.module.css';
 import SearchBar from '../components/homeBody/SearchBar/SearchBar';
@@ -18,7 +19,7 @@ export default async function PostsListPage() {
         {posts.map((post) => (
           <li key={post.id} className={styles.postItem}>
             <div className={styles.imageContainer}>
-            <img className={styles.image} src={post.image} alt={post.title} />
+            <Image className={styles.image} src={post.image} alt={post.title}></Image> 
             </div>
             <div className={styles.content}>
             <h2 className={styles.postTitle}>{post.title}</h2>
