@@ -1,13 +1,16 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation'; // Corrigir importação
+
+import React, { useEffect, useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import styles from '../postagens.module.css';
 import SearchBar from '@/app/components/homeBody/SearchBar/SearchBar';
 import FilterButton from '@/app/components/homeBody/filterButton/FilterButton';
+import LoadingMaquina from '@/app/components/loadingMaquina/LoadingMaquina';
 
 const PostsSearchPage = () => {
   const searchParams = useSearchParams();
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,6 +27,8 @@ const PostsSearchPage = () => {
       } catch (error) {
         console.error('Erro ao buscar posts:', error);
         setPosts([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -38,7 +43,9 @@ const PostsSearchPage = () => {
         <FilterButton />
       </div>
       <ul className={styles.postsList}>
-        {posts.length > 0 ? (
+        {loading ? (
+          <LoadingMaquina />
+        ) : posts.length > 0 ? (
           posts.map((post) => (
             <li key={post.id} className={styles.postItem}>
               <div className={styles.imageContainer}>
@@ -70,4 +77,10 @@ const PostsSearchPage = () => {
   );
 };
 
-export default PostsSearchPage;
+export default function PostsSearchPageWrapper() {
+  return (
+    <Suspense fallback={<LoadingMaquina />}>
+      <PostsSearchPage />
+    </Suspense>
+  );
+}
