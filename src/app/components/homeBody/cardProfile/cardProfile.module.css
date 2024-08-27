@@ -97,6 +97,7 @@
   .socialLinksContainer {
     display: flex;
     gap: 1rem;
+    margin-top: 2em;
   }
   
   .socialLinksContainer img {
@@ -106,7 +107,6 @@
   }
   
   .socialLinksContainer img:hover {
-    fill: #f55d56;
     transform: scale(1.2);
   }
   

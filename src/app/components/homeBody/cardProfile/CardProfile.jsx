@@ -25,8 +25,12 @@ const CardProfile = () => {
       </button>
 
       <div className={styles.profilePic}>
-        <Image src="/profilePic.jpg" alt="Profile Pic Mariana Manzano"></Image>
-
+        <Image 
+          src="/profilePic.jpg" 
+          alt="Profile Pic Mariana Manzano"
+          fill // Usado para ajustar a imagem ao contêiner
+          style={{ objectFit: 'cover' }} // Ajuste a imagem dentro do contêiner
+        />
       </div>
 
       <div className={styles.bottom}>
@@ -39,7 +43,13 @@ const CardProfile = () => {
         <div className={styles.bottomBottom}>
           <div className={styles.socialLinksContainer}>
             <Link href="https://www.skoob.com.br/">
-              <Image src="/skoobLogo.png" alt="Skoob Logo"></Image>
+                <Image 
+                  src="/skoobLogo.png" 
+                  alt="Skoob Logo"
+                  width={50}   // Defina a largura desejada
+                  height={50}  // Defina a altura desejada
+                  style={{ objectFit: 'contain' }} // Ajuste a imagem dentro do contêiner
+                />
             </Link>
           </div>
         </div>

@@ -19,7 +19,13 @@ export default async function PostsListPage() {
         {posts.map((post) => (
           <li key={post.id} className={styles.postItem}>
             <div className={styles.imageContainer}>
-            <Image className={styles.image} src={post.image} alt={post.title}></Image> 
+            <Image 
+            className={styles.image} 
+            src={post.image} 
+            alt={post.title}
+            width={500}   
+            height={300}>
+              </Image> 
             </div>
             <div className={styles.content}>
             <h2 className={styles.postTitle}>{post.title}</h2>

@@ -27,7 +27,13 @@ export default async function PostPage({ params }) {
       </div>
       {post.image && (
         <div>
-          <Image className={styles.imagemPost} src={post.image} alt={post.title}></Image>
+          <Image 
+          className={styles.imagemPost} 
+          src={post.image} 
+          alt={post.title}
+          width={500}  
+          height={300}>
+          </Image>
         </div>
       )}
       <div className={styles.boxConteudo}>
