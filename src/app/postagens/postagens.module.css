@@ -77,7 +77,7 @@
 }
 
 .postExcerpt {
-  font-size: 0.9em;
+  font-size: 0em;
   color: #555;
   flex-grow: 1; /* Faz com que o texto ocupe o espaço disponível */
 }
@@ -89,7 +89,7 @@
   padding: 4px 8px;
   border-radius: 6px;
   border: none;
-  background: rgb(164, 46, 194);
+  background: #fbb9b6;
   color: #fff;
   cursor: pointer;
   align-self: flex-end; /* Alinha o botão ao final do bloco */

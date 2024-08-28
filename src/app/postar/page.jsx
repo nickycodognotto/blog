@@ -1,36 +1,70 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, CompositeDecorator } from "draft-js";
-import { AtomicBlockUtils } from "draft-js";
-import styles from "./post.module.css"; // Importando o CSS Module
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+import styles from "./post.module.css";
 import { useSession } from "next-auth/react";
 import LoadingMaquina from "../components/loadingMaquina/LoadingMaquina";
 import axios from "axios";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [theme, setTheme] = useState(""); // Inicializa com uma string vazia
-  const [editorState, setEditorState] = useState(EditorState.createEmpty()); // Estado do Draft.js
+  const [theme, setTheme] = useState("");
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null); // Estado para armazenar o preview da imagem
+  const [imagePreview, setImagePreview] = useState(null);
   const { status } = useSession();
   const router = useRouter();
+  const quillRef = useRef(null); // Ref para armazenar a instância do Quill
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/login"); // Redireciona para a página de login se não estiver autenticado
+      router.push("/login");
     }
   }, [status, router]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !quillRef.current) {
+      const editorContainer = document.querySelector("#editor-container");
+      if (editorContainer) {
+        const quill = new Quill(editorContainer, {
+          theme: "snow",
+          modules: {
+            toolbar: [
+              [{ 'header': [1, 2, false] }],
+              ['bold', 'italic', 'underline'],
+              ['link'],
+              [{ 'color': [] }],
+              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+              ['image']
+            ],
+          },
+        });
+        quillRef.current = quill; // Armazena a instância do Quill
+
+        // Adiciona o aviso apenas ao sair da página "Postar"
+        const handleBeforeUnload = (event) => {
+          event.preventDefault();
+          event.returnValue = "A página foi recarregada, e o progresso não salvo será perdido.";
+        };
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+          // Remove o aviso e destrói a instância do Quill
+          window.removeEventListener("beforeunload", handleBeforeUnload);
+          quillRef.current = null;
+        };
+      }
+    }
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
 
-    // Gerando o preview da imagem
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImagePreview(reader.result); // Define o preview da imagem
+      setImagePreview(reader.result);
     };
     if (file) {
       reader.readAsDataURL(file);
@@ -42,16 +76,16 @@ const CreatePost = () => {
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "preset_blog"); // Substitua pelo seu upload preset
+    formData.append("upload_preset", "preset_blog");
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dmsygyvgj/image/upload", // Substitua pelo seu Cloud Name
+        "https://api.cloudinary.com/v1_1/dmsygyvgj/image/upload",
         formData
       );
 
       if (response.status === 200) {
-        return response.data.secure_url; // URL da imagem
+        return response.data.secure_url;
       } else {
         console.error("Erro ao enviar a imagem. Status:", response.status);
         console.error("Resposta do erro:", response.data);
@@ -63,7 +97,7 @@ const CreatePost = () => {
         console.error("Detalhes da resposta de erro:", error.response.data);
         alert("Erro ao enviar imagem: " + error.response.data.message);
       }
-      throw error; // Re-lançar o erro para ser capturado no bloco de captura do handleSubmit
+      throw error;
     }
   };
 
@@ -80,9 +114,8 @@ const CreatePost = () => {
       return;
     }
 
-    // Converte o estado do editor para Raw JSON
-    const contentState = editorState.getCurrentContent();
-    const rawContent = convertToRaw(contentState);
+    const delta = quillRef.current.getContents();
+    const rawContent = JSON.stringify(delta);
 
     let imageUrl = "";
     if (image) {
@@ -110,14 +143,14 @@ const CreatePost = () => {
         body: JSON.stringify({
           title,
           theme,
-          content: JSON.stringify(rawContent), // Armazena o conteúdo formatado
+          content: rawContent,
           image: imageUrl,
         }),
       });
 
       if (response.ok) {
         alert("Post publicado com sucesso!");
-        router.push("/"); // Redireciona para a página inicial após a publicação
+        router.push("/");
       } else {
         console.error("Erro ao publicar o post. Status:", response.status);
         const errorData = await response.json();
@@ -129,20 +162,8 @@ const CreatePost = () => {
     }
   };
 
-  // Funções para lidar com a formatação
-  const handleBoldClick = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
-  };
-
-  const handleLinkClick = () => {
-    const url = prompt('Digite o URL do link:');
-    if (url) {
-      setEditorState(RichUtils.toggleLink(editorState, url));
-    }
-  };
-
   if (status === "loading") {
-    return <LoadingMaquina />; // Tela de carregamento enquanto verifica a autenticação
+    return <LoadingMaquina />;
   }
 
   return (
@@ -156,7 +177,6 @@ const CreatePost = () => {
           className={styles.inputField}
         />
 
-        {/* Exibe o preview da imagem */}
         {imagePreview && (
           <div className={styles.imagePreviewContainer}>
             <img src={imagePreview} alt="Preview da imagem" className={styles.imagePreview} />
@@ -186,20 +206,7 @@ const CreatePost = () => {
           <option value="jogos">jogos</option>
         </select>
 
-        {/* Controles de formatação */}
-        <div className={styles.controls}>
-          <button type="button" onClick={handleBoldClick}>Negrito</button>
-          <button type="button" onClick={handleLinkClick}>Link</button>
-        </div>
-
-        {/* Editor Draft.js */}
-        <div className={styles.editorContainer}>
-          <Editor
-            editorState={editorState}
-            onChange={setEditorState}
-            placeholder="Escreva seu post aqui..."
-          />
-        </div>
+        <div id="editor-container" className={styles.editorContainer}></div>
 
         <button className={styles.botaopublish} type="submit">publicar</button>
       </form>

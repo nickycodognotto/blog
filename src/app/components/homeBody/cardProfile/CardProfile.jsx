@@ -27,7 +27,7 @@ const CardProfile = () => {
       <div className={styles.profilePic}>
         <Image 
           src="/profilePic.jpg" 
-          alt="Profile Pic Mariana Manzano"
+          alt="Profile Pic docinho"
           fill // Usado para ajustar a imagem ao contêiner
           style={{ objectFit: 'cover' }} // Ajuste a imagem dentro do contêiner
         />
@@ -35,7 +35,7 @@ const CardProfile = () => {
 
       <div className={styles.bottom}>
         <div className={styles.content}>
-          <span className={styles.name}>Mariana Manzano</span>
+          <span className={styles.name}>docinho</span>
           <span className={styles.aboutMe}>
             Lorem ipsum dolor sit amet consectetur adipisicinFcls
           </span>

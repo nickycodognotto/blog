@@ -33,6 +33,7 @@
     font-family: 'Sacramento', cursive;
     font-weight: 1;
     transition: transform 0.5s ease-in-out;
+    color: rgb(61, 61, 61);
 }
 
 
@@ -40,6 +41,7 @@
     text-decoration: none;
     color: inherit;
     transition: transform 0.5s ease-in-out;
+    color: rgb(61, 61, 61);
 }
 
 .rightLinks a:hover, .leftLinks a:hover{

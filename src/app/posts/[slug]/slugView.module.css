@@ -58,26 +58,21 @@
     font-weight: bold;
 }
 
-.conteudo{
-    font-size: 22px;
-    text-indent: 50px;
-
-    margin-bottom: 1em;
-
-    white-space: pre-wrap;
-}
-
-.boxConteudo{
+.boxConteudo {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 2em;
-
+    padding-bottom: 2em; /* Adicionado para criar espaço na parte inferior */
     background-color: rgb(255, 255, 255, 1);
     border-radius: 0px 0px 10px 10px;
     height: auto;
-
     margin-top: -5px;
     z-index: 10;
+}
+
+.quillContent a {
+    color: blue;
+    text-decoration: underline;
 }
 
 .divisor{
