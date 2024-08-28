@@ -74,7 +74,7 @@
 
     background-color: rgb(255, 255, 255, 1);
     border-radius: 0px 0px 10px 10px;
-    height: 870px;
+    height: auto;
 
     margin-top: -5px;
     z-index: 10;

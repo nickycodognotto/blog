@@ -145,51 +145,41 @@ const ModalFilter = ({ isOpen, onClose }) => {
                 <input
                   type="radio"
                   name="category"
-                  value="GATINHOS"
-                  checked={tempSelectedCategory === "GATINHOS"}
+                  value="escrita"
+                  checked={tempSelectedCategory === "escrita"}
                   onChange={handleCategoryChange}
                 />
-                gatinhos
+                escrita
               </label>
               <label>
                 <input
                   type="radio"
                   name="category"
-                  value="ARTE"
-                  checked={tempSelectedCategory === "ARTE"}
+                  value="resenhas"
+                  checked={tempSelectedCategory === "resenhas"}
                   onChange={handleCategoryChange}
                 />
-                arte
+                resenhas
               </label>
               <label>
                 <input
                   type="radio"
                   name="category"
-                  value="Opção 3"
-                  checked={tempSelectedCategory === "Opção 3"}
+                  value="vida"
+                  checked={tempSelectedCategory === "vida"}
                   onChange={handleCategoryChange}
                 />
-                Opção 3
+                vida
               </label>
               <label>
                 <input
                   type="radio"
                   name="category"
-                  value="Opção 4"
-                  checked={tempSelectedCategory === "Opção 4"}
+                  value="jogos"
+                  checked={tempSelectedCategory === "jogos"}
                   onChange={handleCategoryChange}
                 />
-                Opção 4
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="Opção 5"
-                  checked={tempSelectedCategory === "Opção 5"}
-                  onChange={handleCategoryChange}
-                />
-                Opção 5
+                jogos
               </label>
             </div>
           )}

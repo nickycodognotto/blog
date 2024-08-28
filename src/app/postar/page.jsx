@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Editor, EditorState, RichUtils, convertToRaw, convertFromRaw, CompositeDecorator } from "draft-js";
+import { AtomicBlockUtils } from "draft-js";
 import styles from "./post.module.css"; // Importando o CSS Module
 import { useSession } from "next-auth/react";
 import LoadingMaquina from "../components/loadingMaquina/LoadingMaquina";
@@ -8,9 +10,10 @@ import axios from "axios";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
-  const [theme, setTheme] = useState("");
-  const [content, setContent] = useState("");
+  const [theme, setTheme] = useState(""); // Inicializa com uma string vazia
+  const [editorState, setEditorState] = useState(EditorState.createEmpty()); // Estado do Draft.js
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null); // Estado para armazenar o preview da imagem
   const { status } = useSession();
   const router = useRouter();
 
@@ -21,20 +24,32 @@ const CreatePost = () => {
   }, [status, router]);
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage(file);
+
+    // Gerando o preview da imagem
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result); // Define o preview da imagem
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
   };
 
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'preset_blog'); // Substitua pelo seu upload preset
-    
+    formData.append("file", file);
+    formData.append("upload_preset", "preset_blog"); // Substitua pelo seu upload preset
+
     try {
       const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dmsygyvgj/image/upload', // Substitua pelo seu Cloud Name
+        "https://api.cloudinary.com/v1_1/dmsygyvgj/image/upload", // Substitua pelo seu Cloud Name
         formData
       );
-  
+
       if (response.status === 200) {
         return response.data.secure_url; // URL da imagem
       } else {
@@ -51,15 +66,24 @@ const CreatePost = () => {
       throw error; // Re-lançar o erro para ser capturado no bloco de captura do handleSubmit
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (status === "unauthenticated") {
       alert("Você precisa estar logado para publicar um post.");
       return;
     }
-  
+
+    if (!theme) {
+      alert("Por favor, escolha o tema do post.");
+      return;
+    }
+
+    // Converte o estado do editor para Raw JSON
+    const contentState = editorState.getCurrentContent();
+    const rawContent = convertToRaw(contentState);
+
     let imageUrl = "";
     if (image) {
       try {
@@ -76,7 +100,7 @@ const CreatePost = () => {
     } else {
       console.log("Nenhuma imagem selecionada.");
     }
-  
+
     try {
       const response = await fetch("/api/post", {
         method: "POST",
@@ -84,13 +108,13 @@ const CreatePost = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            title,
-            theme,
-            content,
-            image: imageUrl, // Use "image" em vez de "imageUrl"
-          }),
+          title,
+          theme,
+          content: JSON.stringify(rawContent), // Armazena o conteúdo formatado
+          image: imageUrl,
+        }),
       });
-  
+
       if (response.ok) {
         alert("Post publicado com sucesso!");
         router.push("/"); // Redireciona para a página inicial após a publicação
@@ -102,6 +126,18 @@ const CreatePost = () => {
       }
     } catch (error) {
       console.error("Erro ao publicar o post:", error.message);
+    }
+  };
+
+  // Funções para lidar com a formatação
+  const handleBoldClick = () => {
+    setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
+  };
+
+  const handleLinkClick = () => {
+    const url = prompt('Digite o URL do link:');
+    if (url) {
+      setEditorState(RichUtils.toggleLink(editorState, url));
     }
   };
 
@@ -119,6 +155,14 @@ const CreatePost = () => {
           onChange={handleImageChange}
           className={styles.inputField}
         />
+
+        {/* Exibe o preview da imagem */}
+        {imagePreview && (
+          <div className={styles.imagePreviewContainer}>
+            <img src={imagePreview} alt="Preview da imagem" className={styles.imagePreview} />
+          </div>
+        )}
+
         <input
           type="text"
           value={title}
@@ -127,22 +171,37 @@ const CreatePost = () => {
           required
           className={styles.inputField}
         />
-        <input
-          type="text"
+        <select
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
-          placeholder="Tema"
+          className={`${styles.inputField} ${theme === "" ? styles.placeholderOption : ""}`}
           required
-          className={styles.inputField}
-        />
-        <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Escreva seu post aqui..."
-          required
-          className={`${styles.inputField} ${styles.textareaField}`} // Aplicando ambas as classes
-        />
-        <button className={styles.botaopublish} type="submit">Publicar</button>
+        >
+          <option value="" disabled>
+            escolha o tema do post
+          </option>
+          <option value="escrita">escrita</option>
+          <option value="resenhas">resenhas</option>
+          <option value="vida">vida</option>
+          <option value="jogos">jogos</option>
+        </select>
+
+        {/* Controles de formatação */}
+        <div className={styles.controls}>
+          <button type="button" onClick={handleBoldClick}>Negrito</button>
+          <button type="button" onClick={handleLinkClick}>Link</button>
+        </div>
+
+        {/* Editor Draft.js */}
+        <div className={styles.editorContainer}>
+          <Editor
+            editorState={editorState}
+            onChange={setEditorState}
+            placeholder="Escreva seu post aqui..."
+          />
+        </div>
+
+        <button className={styles.botaopublish} type="submit">publicar</button>
       </form>
     </div>
   );

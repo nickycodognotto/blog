@@ -16,7 +16,7 @@ const Navbar = () => {
                 <Link href="/"><h1 className={styles.tituloSacramento}>doce amargo</h1></Link>
             </div>
             <div className={styles.rightLinks}>
-                <Link href="/">portifólio</Link>
+                <Link href="/">fotos</Link>
                 <Link href="/">contato</Link>
                 <AuthLinks />
             </div>

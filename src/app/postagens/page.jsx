@@ -37,7 +37,7 @@ export default async function PostsListPage() {
             <div className={styles.content}>
               <h2 className={styles.postTitle}>{post.title}</h2>
               <p className={styles.postTheme}><strong>Tema:</strong> {post.theme}</p>
-              <p className={styles.postExcerpt}>{post.content.slice(0, 100)}...</p>
+              <p className={styles.postExcerpt}>{post.content.slice(0, 50)}...</p>
             </div>
             <Link href={`/posts/${post.slug}`} className={styles.postLink}>
               <button className={styles.button}>
