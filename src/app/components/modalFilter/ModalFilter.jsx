@@ -1,7 +1,8 @@
-"use client";
-import React, { useEffect, useState, useCallback } from 'react'; // Importa useCallback para memoizar discardChanges
-import { useRouter, usePathname } from 'next/navigation'; // Importação correta para a estrutura app
+import React, { useEffect, useState, useCallback } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import CustomCheckbox from './checkbox/CustomCheckbox';
 import styles from './modalFilter.module.css';
+import CustomRadioGroup from './radioButton/CustomRadioGroup';
 
 const ModalFilter = ({ isOpen, onClose }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -10,15 +11,14 @@ const ModalFilter = ({ isOpen, onClose }) => {
   const [tempSelectedOption, setTempSelectedOption] = useState(null);
   const [tempSelectedCategory, setTempSelectedCategory] = useState(null);
   const router = useRouter();
-  const pathname = usePathname(); // Obtém o caminho da página atual
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Recupera os dados salvos do localStorage
     const savedOption = localStorage.getItem('selectedOption');
     const savedCategory = localStorage.getItem('selectedCategory');
     if (savedOption) setSelectedOption(savedOption);
     if (savedCategory) setSelectedCategory(savedCategory);
-  }, []); // Este efeito não depende de nada, então o array de dependências está correto aqui
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -26,10 +26,9 @@ const ModalFilter = ({ isOpen, onClose }) => {
       setTempSelectedCategory(selectedCategory);
       setShowCategories(selectedOption === "categoriaDoPost");
     }
-  }, [isOpen, selectedOption, selectedCategory]); // Inclui `selectedCategory` como dependência
+  }, [isOpen, selectedOption, selectedCategory]);
 
   useEffect(() => {
-    // Limpa a modal e desmarcar todas as opções se a página não for '/postagens/search'
     if (pathname !== '/postagens/search') {
       setSelectedOption(null);
       setSelectedCategory(null);
@@ -37,17 +36,16 @@ const ModalFilter = ({ isOpen, onClose }) => {
       setTempSelectedCategory(null);
       setShowCategories(false);
 
-      // Limpa o localStorage
       localStorage.removeItem('selectedOption');
       localStorage.removeItem('selectedCategory');
     }
-  }, [pathname]); // O array de dependências está correto aqui
+  }, [pathname]);
 
   const discardChanges = useCallback(() => {
     setTempSelectedOption(selectedOption);
     setTempSelectedCategory(selectedCategory);
     setShowCategories(selectedOption === "categoriaDoPost");
-  }, [selectedOption, selectedCategory]); // Inclui `selectedOption` e `selectedCategory` como dependências
+  }, [selectedOption, selectedCategory]);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -59,7 +57,7 @@ const ModalFilter = ({ isOpen, onClose }) => {
 
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
-  }, [discardChanges, onClose]); // Inclui `discardChanges` no array de dependências
+  }, [discardChanges, onClose]);
 
   const handleClickOutside = (e) => {
     if (e.target === e.currentTarget) {
@@ -68,9 +66,7 @@ const ModalFilter = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleOptionChange = (e) => {
-    const { name } = e.target;
-
+  const handleOptionChange = (name) => {
     if (tempSelectedOption === name) {
       setTempSelectedOption(null);
       setShowCategories(false);
@@ -83,8 +79,7 @@ const ModalFilter = ({ isOpen, onClose }) => {
     }
   };
 
-  const handleCategoryChange = (e) => {
-    const { value } = e.target;
+  const handleCategoryChange = (value) => {
     setTempSelectedCategory(value);
   };
 
@@ -95,18 +90,14 @@ const ModalFilter = ({ isOpen, onClose }) => {
     }).toString();
 
     if (!tempSelectedOption && pathname === '/postagens/search') {
-      // Redireciona para '/postagens' se nenhuma opção estiver selecionada e a página for '/postagens/search'
       router.push('/postagens');
     } else {
-      // Atualiza os estados com as opções selecionadas
       setSelectedOption(tempSelectedOption);
       setSelectedCategory(tempSelectedCategory);
 
-      // Salva os parâmetros no localStorage
       localStorage.setItem('selectedOption', tempSelectedOption);
       localStorage.setItem('selectedCategory', tempSelectedCategory);
 
-      // Redireciona para a página de busca com os parâmetros
       router.push(`/postagens/search?${queryString}`);
     }
 
@@ -119,69 +110,27 @@ const ModalFilter = ({ isOpen, onClose }) => {
     <div className={styles.overlay} onClick={handleClickOutside}>
       <div className={styles.modal}>
         <button className={styles.closeButton} onClick={() => { discardChanges(); onClose(); }}>X</button>
-        <h2 className={styles.title}>Como quer pesquisar?</h2>
+        <h2 className={styles.title}>como quer filtrar?</h2>
         <div className={styles.options}>
-          <label>
-            <input
-              type="checkbox"
-              name="títuloDoPost"
-              checked={tempSelectedOption === "títuloDoPost"}
-              onChange={handleOptionChange}
+          <label className={styles.labelTitulo}>
+            <CustomCheckbox
+              checked={tempSelectedOption === "tituloDoPost"}
+              onChange={() => handleOptionChange("tituloDoPost")}
             />
             Título do post
           </label>
-          <label>
-            <input
-              type="checkbox"
-              name="categoriaDoPost"
-              checked={tempSelectedOption === "categoriaDoPost"}
-              onChange={handleOptionChange}
-            />
+          <div
+            className={styles.categoryOption}
+            onClick={() => handleOptionChange("categoriaDoPost")}
+          >
             Categoria do post
-          </label>
+            <span className={`${styles.arrow} ${showCategories ? styles.arrowRigth : styles.arrowDown}`} />
+          </div>
           {showCategories && (
-            <div className={styles.dropdownContent}>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="escrita"
-                  checked={tempSelectedCategory === "escrita"}
-                  onChange={handleCategoryChange}
-                />
-                escrita
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="resenhas"
-                  checked={tempSelectedCategory === "resenhas"}
-                  onChange={handleCategoryChange}
-                />
-                resenhas
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="vida"
-                  checked={tempSelectedCategory === "vida"}
-                  onChange={handleCategoryChange}
-                />
-                vida
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="category"
-                  value="jogos"
-                  checked={tempSelectedCategory === "jogos"}
-                  onChange={handleCategoryChange}
-                />
-                jogos
-              </label>
-            </div>
+            <CustomRadioGroup
+              selectedCategory={tempSelectedCategory}
+              onCategoryChange={handleCategoryChange}
+            />
           )}
         </div>
         <button className={styles.applyButton} onClick={handleApply}>Filtrar</button>

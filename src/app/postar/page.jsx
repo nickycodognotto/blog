@@ -1,62 +1,31 @@
+// pages/createPost.js
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import Quill from "quill";
-import "quill/dist/quill.snow.css";
-import styles from "./post.module.css";
 import { useSession } from "next-auth/react";
 import LoadingMaquina from "../components/loadingMaquina/LoadingMaquina";
 import axios from "axios";
+import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+import styles from "./post.module.css";
+
+// Carregue o QuillEditor dinamicamente com SSR desabilitado
+const QuillEditor = dynamic(() => import("../components/quillEditor/QuillEditor"), {
+  ssr: false,
+});
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [theme, setTheme] = useState("");
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [editorContent, setEditorContent] = useState(null);
   const { status } = useSession();
   const router = useRouter();
-  const quillRef = useRef(null); // Ref para armazenar a instância do Quill
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/login");
-    }
-  }, [status, router]);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && !quillRef.current) {
-      const editorContainer = document.querySelector("#editor-container");
-      if (editorContainer) {
-        const quill = new Quill(editorContainer, {
-          theme: "snow",
-          modules: {
-            toolbar: [
-              [{ 'header': [1, 2, false] }],
-              ['bold', 'italic', 'underline'],
-              ['link'],
-              [{ 'color': [] }],
-              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-              ['image']
-            ],
-          },
-        });
-        quillRef.current = quill; // Armazena a instância do Quill
-
-        // Adiciona o aviso apenas ao sair da página "Postar"
-        const handleBeforeUnload = (event) => {
-          event.preventDefault();
-          event.returnValue = "A página foi recarregada, e o progresso não salvo será perdido.";
-        };
-        window.addEventListener("beforeunload", handleBeforeUnload);
-
-        return () => {
-          // Remove o aviso e destrói a instância do Quill
-          window.removeEventListener("beforeunload", handleBeforeUnload);
-          quillRef.current = null;
-        };
-      }
-    }
-  }, []);
+  if (status === "loading") {
+    return <LoadingMaquina />;
+  }
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -88,15 +57,10 @@ const CreatePost = () => {
         return response.data.secure_url;
       } else {
         console.error("Erro ao enviar a imagem. Status:", response.status);
-        console.error("Resposta do erro:", response.data);
         throw new Error("Erro ao enviar a imagem para o Cloudinary.");
       }
     } catch (error) {
       console.error("Erro ao enviar a imagem para o Cloudinary:", error.message);
-      if (error.response) {
-        console.error("Detalhes da resposta de erro:", error.response.data);
-        alert("Erro ao enviar imagem: " + error.response.data.message);
-      }
       throw error;
     }
   };
@@ -104,34 +68,21 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (status === "unauthenticated") {
-      alert("Você precisa estar logado para publicar um post.");
-      return;
-    }
-
     if (!theme) {
       alert("Por favor, escolha o tema do post.");
       return;
     }
 
-    const delta = quillRef.current.getContents();
-    const rawContent = JSON.stringify(delta);
+    const rawContent = JSON.stringify(editorContent);
 
     let imageUrl = "";
     if (image) {
       try {
         imageUrl = await uploadImageToCloudinary(image);
-        console.log("Imagem enviada com sucesso. URL:", imageUrl);
       } catch (error) {
-        console.error("Erro ao enviar a imagem para o Cloudinary:", error.message);
-        if (error.response) {
-          console.error("Detalhes da resposta de erro:", error.response.data);
-        }
         alert("Falha ao enviar a imagem para o Cloudinary.");
         return;
       }
-    } else {
-      console.log("Nenhuma imagem selecionada.");
     }
 
     try {
@@ -152,19 +103,12 @@ const CreatePost = () => {
         alert("Post publicado com sucesso!");
         router.push("/");
       } else {
-        console.error("Erro ao publicar o post. Status:", response.status);
-        const errorData = await response.json();
-        console.error("Detalhes do erro:", errorData);
         alert("Falha ao publicar o post.");
       }
     } catch (error) {
       console.error("Erro ao publicar o post:", error.message);
     }
   };
-
-  if (status === "loading") {
-    return <LoadingMaquina />;
-  }
 
   return (
     <div className={styles.container}>
@@ -179,7 +123,11 @@ const CreatePost = () => {
 
         {imagePreview && (
           <div className={styles.imagePreviewContainer}>
-            <img src={imagePreview} alt="Preview da imagem" className={styles.imagePreview} />
+            <Image
+              src={imagePreview}
+              alt="Preview da imagem"
+              className={styles.imagePreview}
+            />
           </div>
         )}
 
@@ -194,7 +142,7 @@ const CreatePost = () => {
         <select
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
-          className={`${styles.inputField} ${theme === "" ? styles.placeholderOption : ""}`}
+          className={styles.inputField}
           required
         >
           <option value="" disabled>
@@ -206,9 +154,12 @@ const CreatePost = () => {
           <option value="jogos">jogos</option>
         </select>
 
-        <div id="editor-container" className={styles.editorContainer}></div>
+        {/* O QuillEditor agora é carregado dinamicamente apenas no cliente */}
+        <QuillEditor onEditorChange={(content) => setEditorContent(content)} />
 
-        <button className={styles.botaopublish} type="submit">publicar</button>
+        <button className={styles.botaopublish} type="submit">
+          publicar
+        </button>
       </form>
     </div>
   );

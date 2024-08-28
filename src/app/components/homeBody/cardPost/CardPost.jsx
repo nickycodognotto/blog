@@ -5,6 +5,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import styles from './cardPost.module.css';
 import Link from 'next/link'; // Importar o componente Link
+import LoadingMaquina from '../../loadingMaquina/LoadingMaquina';
 
 export default function CardPost() {
   const [post, setPost] = useState(null);
@@ -27,7 +28,7 @@ export default function CardPost() {
   }, []);
 
   if (!post) {
-    return <p>Carregando...</p>;
+    return <LoadingMaquina />;
   }
 
   return (

@@ -1,0 +1,164 @@
+/* CustomRadioGroup.module.css */
+
+.radioForm {
+    display: block;
+    margin: auto;
+    max-width: 10em;
+    position: relative;
+  }
+  
+  .radioForm input {
+    position: fixed; /* Remove o input do fluxo normal do layout */
+    top: -1.5em;
+    left: -1.5em;
+  }
+  
+  .radioForm label {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    text-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
+    transition: color 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    font-size: 0.695em; /* Ajusta o tamanho da fonte */
+  }
+  
+  .radioForm label:not(:last-of-type) {
+    margin-bottom: 1em; /* Ajusta o espaço entre opções */
+  }
+  
+  .radioForm label span {
+    box-shadow: 0 0 0 0.13em currentColor inset, 0 0.15em 0.15em rgba(0, 0, 0, 0.2), 0 0.2em 0.15em rgba(0, 0, 0, 0.2) inset;
+    display: inline-block;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+    border-radius: 50%;
+    width: 1em; /* Ajusta a largura */
+    height: 1em; /* Ajusta a altura */
+    transition: transform 0.2s cubic-bezier(0.5, 0, 0.5, 2), box-shadow 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95), color 0.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  }
+  
+  .radioForm input:checked + label,
+  .radioForm input:checked + label span {
+    color: #ffb6c1; /* Cor rosa claro para o texto e bolinha quando selecionado */
+  }
+  
+  .radioForm input:checked + label,
+  .radioForm input:checked + label span {
+    transition-delay: 0.4s; /* Atraso da transição */
+  }
+  
+  .radioForm label span {
+    transform: scale(1.40); /* Aumenta a escala da bolinha quando selecionado */
+  }
+  
+  /* Posiciona e dimensiona o container do segmento */
+  .radioForm .worm {
+    top: 4.5%; /* Ajusta a posição vertical em relação ao label */
+    left: 3%;
+    position: absolute;
+    transform: translateY(0%) scale(0.8); /* Centraliza verticalmente e ajusta a escala */
+  }
+  
+  /* Define o estilo do segmento da bolinha */
+  .radioForm .worm__segment {
+    position: absolute;
+    top: 0%; /* Ajusta a posição vertical do segmento */
+    left: 0;
+    transform: translateY(0%); /* Ajusta a posição vertical do segmento */
+    width: 0.6em; /* Define a largura do segmento */
+    height: 0.6em; /* Define a altura do segmento */
+    border-radius: 50%; /* Faz o segmento ser circular */
+    transition: transform 0.4s cubic-bezier(0.45, 0.05, 0.55, 0.95); /* Transição suave para o movimento */
+  }
+  
+  /* Estilo do segmento da bolinha antes da animação */
+  .radioForm .worm__segment:before {
+    animation-duration: 0.4s; /* Duração da animação */
+    animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95); /* Função de temporização da animação */
+    background: currentColor; /* Cor de fundo do segmento */
+    content: "";
+    display: block;
+    width: 100%; /* Largura total do segmento */
+    height: 100%; /* Altura total do segmento */
+    border-radius: 50%; /* Faz o segmento ser circular */
+  }
+  
+  /* Estilo do segmento da bolinha no primeiro e último item */
+  .radioForm .worm__segment:first-child:before,
+  .radioForm .worm__segment:last-child:before {
+    box-shadow: 0 0 1em 0 currentColor; /* Sombra ao redor do segmento */
+  }
+  
+  /* Animação para o primeiro item */
+  @keyframes hop1 {
+    from, to {
+      transform: translateX(0); /* Posição inicial e final da animação */
+    }
+    50% {
+      transform: translateX(-1em); /* Move a bolinha horizontalmente */
+    }
+  }
+  
+  /* Animação para o segundo item */
+  @keyframes hop2 {
+    from, to {
+      transform: translateX(0); /* Posição inicial e final da animação */
+    }
+    50% {
+      transform: translateX(-2em); /* Move a bolinha horizontalmente */
+    }
+  }
+  
+  /* Animação para o terceiro item */
+  @keyframes hop3 {
+    from, to {
+      transform: translateX(0); /* Posição inicial e final da animação */
+    }
+    50% {
+      transform: translateX(-3em); /* Move a bolinha horizontalmente */
+    }
+  }
+  
+  /* Animação para o quarto item */
+  @keyframes hop4 {
+    from, to {
+      transform: translateX(0); /* Posição inicial e final da animação */
+    }
+    50% {
+      transform: translateX(-4em); /* Move a bolinha horizontalmente */
+    }
+  }
+  
+  /* Aplica animação para o primeiro input */
+  .radioForm input:nth-of-type(1):checked ~ .worm .worm__segment {
+    transform: translateY(0); /* Posição base vertical */
+    animation-name: hop1; /* Animação associada */
+  }
+  
+  /* Aplica animação para o segundo input */
+  .radioForm input:nth-of-type(2):checked ~ .worm .worm__segment {
+    transform: translateY(1.88em); /* Ajusta a posição vertical */
+    animation-name: hop2; /* Animação associada */
+  }
+  
+  /* Aplica animação para o terceiro input */
+  .radioForm input:nth-of-type(3):checked ~ .worm .worm__segment {
+    transform: translateY(3.77em); /* Ajusta a posição vertical */
+    animation-name: hop3; /* Animação associada */
+  }
+  
+  /* Aplica animação para o quarto input */
+  .radioForm input:nth-of-type(4):checked ~ .worm .worm__segment {
+    transform: translateY(5.58em); /* Ajusta a posição vertical */
+    animation-name: hop4; /* Animação associada */
+  }
+  
+  /* Estilo para o modo escuro */
+  @media screen and (prefers-color-scheme: dark) {
+    .radioForm input:checked + label,
+    .radioForm input:checked + label span,
+    .radioForm .worm__segment:before {
+      color: #ffb6c1; /* Cor rosa claro para o modo escuro também */
+    }
+  }
+  
