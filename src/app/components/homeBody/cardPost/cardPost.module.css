@@ -72,7 +72,7 @@
     color: gray;
     font-weight: 400;
     font-size: 15px;
-    padding-top: 0px;
+    padding-top: 25px;
 
     margin-top: 0.5em;
     text-transform: lowercase;
@@ -87,7 +87,8 @@
   }
   
   .tituloPost{
-    font-family: "Sacramento";
+    font-family: "Cormorant";
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1em;
+    font-style: italic;
   }

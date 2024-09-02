@@ -60,7 +60,7 @@ const SobreMim = () => {
             <p className={styles.textoCorpoCinco}>
               de qualquer forma, seja bem-vinde! espero que sua passagem seja duradoura e sua experiência uma doçura.
             </p>
-            <p className={styles.textoAssinatura}>com amor, docinho.</p>
+            <p className={styles.textoAssinatura}>com amor, docinho</p>
           </div>
         </>
       )}
