@@ -3,6 +3,7 @@ import { signIn, useSession } from "next-auth/react";
 import LoginForm from '@/app/components/loginForm/LoginForm';
 import styles from './loginPage.module.css';
 import { useRouter } from "next/navigation";
+import LoadingMaquina from "../components/loadingMaquina/LoadingMaquina";
 
 const LoginPage = () => {
   const { status } = useSession();
@@ -10,7 +11,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   if (status === "loading") {
-    return <div className={styles.loading}>Loading...</div>;
+    return <LoadingMaquina />;
   }
 
   if (status === "authenticated") {

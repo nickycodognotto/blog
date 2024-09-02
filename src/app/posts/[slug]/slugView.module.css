@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 
 .container{
@@ -12,7 +13,12 @@
 
 .imagemPost{
     width: 100%;
-    height: 500px;
+    height: 700px;
+
+    object-fit: fill;
+    object-position: center;
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .boxTitulo{
@@ -24,15 +30,18 @@
 
     padding-top: 3%;
     border-radius: 20px 20px 0px 0px;
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .titulo{
     font-size: 60px;
-    font-family: "Cormorant", serif;
-    font-weight: 600;
+    font-family: "Sacramento", cursive;
+    font-weight: 500;
+    font-style: italic;
 
     align-self: center;
-    text-transform: uppercase;
+    text-transform: lowercase;
     margin-bottom: 10px;
 }
 
@@ -54,8 +63,8 @@
 
 
 .data, .autor, .tema{
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 20px;
+    /* font-weight: bold; */
 }
 
 .boxConteudo {
@@ -68,11 +77,19 @@
     height: auto;
     margin-top: -5px;
     z-index: 10;
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .quillContent a {
     color: blue;
     text-decoration: underline;
+}
+
+.quillContent{
+    font-family: "Cormorant", serif;
+    font-weight: 450;
+    font-size: 24px;
 }
 
 .divisor{

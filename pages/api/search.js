@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       let posts;
       if (!option || !category) {
         posts = await prisma.posts.findMany();
-      } else if (option === 'títuloDoPost') {
+      } else if (option === 'tituloDoPost') {
         posts = await prisma.posts.findMany({
           where: {
             title: {

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
 
 
@@ -71,9 +72,9 @@
     color: gray;
     font-weight: 400;
     font-size: 15px;
-    padding-top: 20px;
+    padding-top: 0px;
 
-    margin-top: 1em;
+    margin-top: 0.5em;
     text-transform: lowercase;
   }
   
@@ -85,3 +86,8 @@
     cursor: pointer;
   }
   
+  .tituloPost{
+    font-family: "Sacramento";
+    font-weight: 500;
+    font-size: 1.2em;
+  }

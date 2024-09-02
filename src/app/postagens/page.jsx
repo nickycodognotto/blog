@@ -17,7 +17,7 @@ export default async function PostsListPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Lista de postagens:</h1>
+      <h1 className={styles.title}>lista de postagens:</h1>
       <div className={styles.boxSearchBar}>
         <SearchBar/>
         <FilterButton />
@@ -36,12 +36,12 @@ export default async function PostsListPage() {
             </div>
             <div className={styles.content}>
               <h2 className={styles.postTitle}>{post.title}</h2>
-              <p className={styles.postTheme}><strong>Tema:</strong> {post.theme}</p>
+              <p className={styles.postTheme}>{post.theme}</p>
               <p className={styles.postExcerpt}>{post.content.slice(0, 50)}...</p>
             </div>
             <Link href={`/posts/${post.slug}`} className={styles.postLink}>
               <button className={styles.button}>
-                <p className={styles.buttonText}>Leia Mais</p> 
+                <p className={styles.buttonText}>leia mais</p> 
                 <p className={styles.iconer}>
                   <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none"></path>

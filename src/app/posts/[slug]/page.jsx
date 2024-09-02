@@ -48,7 +48,7 @@ export default async function PostPage({ params }) {
           <p className={styles.tema}>
             <strong className={styles.temaLabel}>Tema:</strong> {post.theme}
           </p>
-          <p className={styles.autor}>Docinho</p>
+          <p className={styles.autor}>docinho</p>
         </div>
       </div>
       {post.image && (

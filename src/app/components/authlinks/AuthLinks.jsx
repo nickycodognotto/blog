@@ -20,7 +20,7 @@ const AuthLinks = () => {
     setTimeout(() => {
       setLoading(false);
       router.push("/login");
-    }, 2500);
+    }, 800);
   };
 
   const handlePostRedirect = () => {

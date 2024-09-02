@@ -60,15 +60,15 @@ const CustomRadioGroup = ({ onCategoryChange }) => {
       </label>
 
       <input
-        checked={activeIndex === 3}
+        checked={activeIndex === 4}
         value="culinaria"
         name="hopping"
         type="radio"
         id="culinaria"
-        onChange={(e) => handleRadioChange(e, 3)}
+        onChange={(e) => handleRadioChange(e, 4)}
       />
-      <label htmlFor="jogos">
-        <span></span>Culinária
+      <label htmlFor="culinaria">
+        <span></span>culinária
       </label>
 
       <div className={styles.worm}>

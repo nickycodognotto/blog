@@ -45,9 +45,9 @@ export default function CardPost() {
         </div>
         <div className={styles.category}>{post.theme}</div>
         <div className={styles.heading}>
-          {post.title}
+          <div className={styles.tituloPost}>{post.title}</div>
           <div className={styles.author}>
-            By <span className={styles.name}>Docinho</span>
+            By <span className={styles.name}>docinho</span>
           </div>
         </div>
       </div>
