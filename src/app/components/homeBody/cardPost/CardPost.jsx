@@ -23,7 +23,7 @@ export default function CardPost() {
     fetchLatestPost();
 
     // Configura um intervalo para atualizar o post a cada 30 segundos
-    const intervalId = setInterval(fetchLatestPost, 30000);
+    const intervalId = setInterval(fetchLatestPost, 100000);
     return () => clearInterval(intervalId); // Limpa o intervalo ao desmontar o componente
   }, []);
 

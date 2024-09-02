@@ -152,6 +152,7 @@ const CreatePost = () => {
           <option value="resenhas">resenhas</option>
           <option value="vida">vida</option>
           <option value="jogos">jogos</option>
+          <option value="culinaria">culinaria</option>
         </select>
 
         {/* O QuillEditor agora é carregado dinamicamente apenas no cliente */}

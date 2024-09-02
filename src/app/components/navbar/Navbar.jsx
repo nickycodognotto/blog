@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className={styles.container}>
             <div className={styles.leftLinks}>
                 <Link href="/">home</Link>
-                <Link href="/">sobre mim</Link>
+                <Link href="/sobre">sobre mim</Link>
                 <Link href="/postagens">postagens</Link>
             </div>
             <div className={styles.name}>
