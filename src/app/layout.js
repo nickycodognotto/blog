@@ -1,3 +1,4 @@
+// app/layout.js
 import './globals.css';
 import { Sacramento } from 'next/font/google';
 import AuthProvider from "./providers/AuthProvider";
@@ -11,7 +12,7 @@ const sacramento = Sacramento({
 
 export const metadata = {
   title: 'Doce Amargo',
-  description: 'Blogizinho teste',
+  description: 'Blogizinho',
   icons: {
     icon: ['/favicon.ico']
   }
@@ -31,5 +32,5 @@ export default function RootLayout({ children }) {
         </AuthProvider>
       </body>
     </html>
-  )
+  );
 }
