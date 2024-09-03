@@ -1,7 +1,7 @@
 // app/layout.js
 import './globals.css';
 import { Sacramento } from 'next/font/google';
-import AuthProvider from "./providers/AuthProvider";
+import AuthProvider from "../providers/AuthProvider";
 import Navbar from "@/app/components/navbar/Navbar";
 import Footer from "@/app/components/footer/Footer";
 
