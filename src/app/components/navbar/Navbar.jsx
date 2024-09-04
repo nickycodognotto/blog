@@ -39,8 +39,8 @@ const Navbar = () => {
                             <Link href="/postagens">postagens</Link>
                             <Link href="/fotos">fotografias</Link>
                             <Link href="/">contato</Link>
+                            <AuthLinks />
                         </div>
-                        <AuthLinks />
                     </div>
                 </>
             )}

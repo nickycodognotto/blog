@@ -41,4 +41,9 @@
 
         margin-left: 0em;
     }
+
+    .sectionSideBar{
+        width: 80dvw;
+        height: 85dvh;
+    }
 }

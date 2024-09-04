@@ -62,3 +62,9 @@
 .micIcon path {
   fill: rgb(255, 81, 0);
 }
+
+
+@media (min-width: 370px) and (max-width: 430px) {
+
+  
+}
