@@ -22,7 +22,10 @@ const Navbar = () => {
                 <Link href="/">contato</Link>
                 <AuthLinks />
             </div>
-            <div className={styles.burger} onClick={() => setOpen(!open)}>
+            <div className={styles.burger} onClick={() => {
+                console.log('Burger clicked');
+                setOpen(!open);
+            }}>
                 <div className={styles.line}></div>
                 <div className={styles.line}></div>
                 <div className={styles.line}></div>
@@ -35,8 +38,8 @@ const Navbar = () => {
                         <Link href="/postagens">postagens</Link>
                         <Link href="/fotos">fotografias</Link>
                         <Link href="/">contato</Link>
+                        <AuthLinks />
                     </div>
-                    <AuthLinks />
                 </div>
             )}
         </div>
