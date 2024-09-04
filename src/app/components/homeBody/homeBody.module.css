@@ -28,3 +28,17 @@
     flex-direction: row;
     gap: 0.5rem;
 }
+
+@media (min-width: 370px) and (max-width: 430px){
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sectionMainBody{
+        width: 100px;
+        height: 100dvh;
+
+        margin-left: 0em;
+    }
+}
