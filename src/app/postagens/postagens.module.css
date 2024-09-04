@@ -166,4 +166,8 @@
   .postsList {
     grid-template-columns: 1fr; /* Reduz para 1 coluna em telas pequenas */
   }
+
+  .boxSearchBar {
+    width: 110%;
+  }
 }
