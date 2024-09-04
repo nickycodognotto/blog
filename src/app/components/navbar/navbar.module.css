@@ -54,6 +54,10 @@
     transition: transform 0.35s ease-in-out;
 }
 
+.burger{
+    display: none;
+}
+
 @media screen and (max-width: 1280px) {
     .links {
         font-size: 18px;
@@ -74,7 +78,19 @@
 }
 
 @media screen and (max-width: 640px) {
-    .links {
-        font-size: 16px; /* Ajuste do tamanho da fonte para telas menores */
+    .leftLinks, .rightLinks {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .responsiveMenu {
+        display: flex;
+    }
+
+    .name {
+        font-size: 22px;
     }
 }
