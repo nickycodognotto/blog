@@ -47,3 +47,13 @@
         height: 85dvh;
     }
 }
+
+@media (min-width: 1350px) and (max-width: 1536px){
+    .sectionMainBody{
+        width: 1050px;
+        height: 150dvh;
+    }
+
+    
+}
+

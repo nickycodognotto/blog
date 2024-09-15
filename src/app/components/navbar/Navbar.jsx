@@ -19,7 +19,7 @@ const Navbar = () => {
             </div>
             <div className={styles.rightLinks}>
                 <Link href="/fotos">fotografias</Link>
-                <Link href="/">contato</Link>
+                <Link href="/contato">contato</Link>
                 <AuthLinks />
             </div>
             <label className={styles.bar} htmlFor="check">
@@ -38,7 +38,7 @@ const Navbar = () => {
                             <Link href="/sobre">sobre mim</Link>
                             <Link href="/postagens">postagens</Link>
                             <Link href="/fotos">fotografias</Link>
-                            <Link href="/">contato</Link>
+                            <Link href="/contato">contato</Link>
                             <AuthLinks />
                         </div>
                     </div>
