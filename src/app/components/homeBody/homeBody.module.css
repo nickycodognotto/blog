@@ -49,7 +49,7 @@
 @media (min-width: 1350px) and (max-width: 1536px){
     .sectionMainBody{
         width: 900px;
-        height: 150dvh;
+        margin-left: 0em;
     }
 
 
