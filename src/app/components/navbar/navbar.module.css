@@ -139,10 +139,11 @@
     z-index: 9999; /* Para estar acima do menu */
 }
 
-@media screen and (max-width: 1280px) {
-    .links {
-        font-size: 18px;
-        gap: 15px;
+@media (min-width: 1280px) and (max-width: 1536px) {
+    .leftLinks, .rightLinks {
+        gap: 35px;
+        font-size: 23px;
+        font-weight: 450;
     }
 }
 
