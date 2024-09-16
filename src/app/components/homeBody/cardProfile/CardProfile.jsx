@@ -37,7 +37,7 @@ const CardProfile = () => {
         <div className={styles.content}>
           <span className={styles.name}>docinho</span>
           <span className={styles.aboutMe}>
-            Lorem ipsum dolor sit amet consectetur adipisicinFcls
+            seja bem vinde ao meu mundinho!
           </span>
         </div>
         <div className={styles.bottomBottom}>
