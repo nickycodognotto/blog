@@ -57,8 +57,8 @@ export default async function PostPage({ params }) {
             className={styles.imagemPost} 
             src={post.image} 
             alt={post.title}
-            width={500}  
-            height={300}
+            width={2000}  
+            height={1800}
           />
         </div>
       )}
