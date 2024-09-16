@@ -79,7 +79,7 @@ const LoginForm = () => {
           <span className={styles.slider}></span>
           <span className={styles.cardSide}></span>
           <div className={styles.flipCardInner}>
-            <div className={styles.flipCardFront}>
+            <div className={styles.flipCardFront}> 
               <div className={styles.title}>entrar</div>
               <form className={styles.flipCardForm} onSubmit={handleSubmit}>
                 <input

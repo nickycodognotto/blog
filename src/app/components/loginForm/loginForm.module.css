@@ -189,6 +189,13 @@
 
 
 @media (min-width: 1280px) and (max-width: 1536px) {
+  .cardSwitch{
+    position: absolute;
+    top: 43%;
+    left: 49%;
+  }
+  
+  
   /* Ajustar tamanho do switch */
   .switch {
     transform: translateY(-200px);

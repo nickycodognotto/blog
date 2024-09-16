@@ -42,7 +42,7 @@ const CardProfile = () => {
         </div>
         <div className={styles.bottomBottom}>
           <div className={styles.socialLinksContainer}>
-            <Link href="https://www.skoob.com.br/">
+            <Link href="https://www.skoob.com.br/share/user/whoismanz">
                 <Image 
                   src="/skoobLogo.png" 
                   alt="Skoob Logo"
