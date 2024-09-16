@@ -80,11 +80,13 @@
 
 .postTitle {
   font-size: 1.7em;
-  font-style: italic;
+  /* font-style: italic; */
   margin: 0;
 
   font-family: "Cormorant", serif;
   font-weight: 500;
+
+  text-transform: lowercase;
 }
 
 .postTheme {
