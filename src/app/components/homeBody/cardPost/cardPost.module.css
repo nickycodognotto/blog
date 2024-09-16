@@ -121,7 +121,7 @@
   }
 
 
-  @media (min-width: 1280px) and (max-width: 1920px){
+  @media (min-width: 1280px) and (max-width: 1536px){
     .card {
       width: 850px;
       height: 600px;
