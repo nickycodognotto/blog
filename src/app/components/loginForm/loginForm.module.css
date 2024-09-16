@@ -186,3 +186,10 @@
 .flipCardBtn, .flipCardInput {
   pointer-events: auto;
 }
+
+
+@media (min-width: 1280px) and (max-width: 1536px) {
+  .wrapperLogin {
+    transform: scale(0.8);
+  }
+}
