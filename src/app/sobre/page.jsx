@@ -46,7 +46,7 @@ const SobreMim = () => {
               height={300}
             />
             <p className={styles.textoTitulo}>sobre mim</p>
-            <p className={styles.textoCorpoUm}>oi! talvez tenha meu nome aqui em algum momento, mas por enquanto, se me encontrou, pode me conhecer como Docinho.</p>
+            <p className={styles.textoCorpoUm}>oi! talvez tenha meu nome aqui em algum momento, mas por enquanto, se me encontrou, pode me conhecer como docinho.</p>
             <p className={styles.textoCorpoDois}>gosto de livros (às vezes), gatinhos (sempre) e café (depende). nem tudo sobre mim é muito claro ou cheio de significado, mas aprecio as coisas simples e raramente saio da minha área de conforto.</p>
             <p className={styles.textoCorpoTres}>
             é por isso que esse blog existe! senti a necessidade de escrever e ter um 
