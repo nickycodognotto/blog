@@ -143,6 +143,10 @@
     .container {
         margin-right: 100px;
     }
+
+    .rightLinks{
+        margin-left: 50px;
+    }
 }
 
 
