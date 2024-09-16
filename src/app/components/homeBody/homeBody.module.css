@@ -1,12 +1,10 @@
 .container{
     display: flex;
     flex-direction: row;
+    gap: 40px;
 }
 
 .sectionMainBody{
-    width: 1050px;
-    height: 150dvh;
-
     margin-left: 5em;
 }
 
@@ -48,7 +46,6 @@
 
 @media (min-width: 1350px) and (max-width: 1536px){
     .sectionMainBody{
-        width: 900px;
         margin-left: 0em;
     }
 
