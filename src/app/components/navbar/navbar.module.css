@@ -140,12 +140,16 @@
 }
 
 @media (min-width: 1280px) and (max-width: 1536px) {
-    .container {
-        margin-right: 100px;
+    .rightLinks{
+        margin-left: 70px;
     }
 
-    .rightLinks{
-        margin-left: 10px;
+    .leftLinks{
+        margin-right: 150px;
+    }
+
+    .tituloSacramento{
+        margin-right: 25px;
     }
 }
 
