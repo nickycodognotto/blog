@@ -1,10 +1,16 @@
 import Image from 'next/image';
 import prisma from '../../../utils/prismaClient';
 import styles from './slugView.module.css';
-import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html'; // Importe a classe corretamente
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html'; 
+import EditButton from '@/app/components/editButton/EditButton';
+import { getServerSession } from 'next-auth/next'; // Importar getServerSession para verificar a sessão
+import { authOptions } from '../../../../pages/api/auth/[...nextauth]'; // Importar suas opções de autenticação
 
 export default async function PostPage({ params }) {
   const { slug } = params;
+
+  // Obtém a sessão do lado do servidor
+  const session = await getServerSession(authOptions);
 
   let post = await prisma.posts.findUnique({
     where: {
@@ -19,20 +25,16 @@ export default async function PostPage({ params }) {
   // Função para renderizar o conteúdo Delta como HTML
   const renderContent = (content) => {
     try {
-      console.log('Conteúdo JSON:', content);
       const delta = JSON.parse(content); // Converte o JSON para Delta
 
       if (delta && delta.ops) {
-        // Instancie o conversor com o delta e as opções
         const converter = new QuillDeltaToHtmlConverter(delta.ops, {}); 
         const contentHTML = converter.convert(); // Converte o Delta para HTML
         return <div dangerouslySetInnerHTML={{ __html: contentHTML }} />;
       } else {
-        console.error('Conteúdo Delta inválido:', delta);
         return <p>Conteúdo inválido</p>;
       }
     } catch (e) {
-      console.error('Erro ao renderizar o conteúdo:', e);
       return <p>Erro ao renderizar o conteúdo</p>;
     }
   };
@@ -49,8 +51,14 @@ export default async function PostPage({ params }) {
             <strong className={styles.temaLabel}>Tema:</strong> {post.theme}
           </p>
           <p className={styles.autor}>docinho</p>
+
+          <div className={styles.boxEditButton}>
+            {/* Renderizar o botão de edição apenas se o usuário for admin */}
+            {session?.user?.role === 'admin' && <EditButton />}
+          </div>
         </div>
       </div>
+
       {post.image && (
         <div>
           <Image 
